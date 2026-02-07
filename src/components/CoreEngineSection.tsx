@@ -27,7 +27,7 @@ const steps = [
   {
     icon: Receipt,
     title: "Prove",
-    quote: "Proof—timestamped and verifiable.",
+    quote: ["You receive a receipt:", "What happened, why, when, and by whom."],
   },
 ];
 
