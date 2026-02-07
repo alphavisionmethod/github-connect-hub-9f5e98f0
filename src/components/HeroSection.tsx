@@ -142,6 +142,16 @@ const HeroSection = () => {
             </button>
           </motion.form>
 
+          {/* Micro-trust line */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 1 }}
+            className="mt-4 text-xs text-muted-foreground/70 tracking-wide"
+          >
+            Shadow mode by default • Human approval required • Full audit trail
+          </motion.p>
+
           {/* Demo Video */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
