@@ -62,8 +62,8 @@ const TrustSystemSection = () => {
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               className="flex items-start gap-4 p-4 rounded-xl bg-secondary/50 border border-border/50 hover:border-primary/30 transition-colors duration-300"
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <point.icon className="w-5 h-5 text-primary" />
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center">
+                <point.icon className="w-5 h-5 text-accent" />
               </div>
               <p className="text-muted-foreground text-sm md:text-base leading-relaxed pt-1.5">
                 {point.text}
