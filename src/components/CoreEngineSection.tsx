@@ -7,7 +7,7 @@ const steps = [
   {
     icon: FileText,
     title: "Think",
-    quote: "SITA drafts decisions and plans actions. Nothing is executed yet.",
+    quote: ["SITA drafts decisions and plans actions.", "Nothing is executed yet."],
   },
   {
     icon: Shield,
@@ -106,7 +106,9 @@ const CoreEngineSection = () => {
                       {/* Quote */}
                       <div className="flex-1">
                         <p className="text-muted-foreground text-sm leading-relaxed italic">
-                          {step.quote}
+                          {Array.isArray(step.quote) ? step.quote.map((line, i) => (
+                            <span key={i} className={i > 0 ? "block mt-2" : "block"}>{line}</span>
+                          )) : step.quote}
                         </p>
                       </div>
 
