@@ -65,7 +65,7 @@ const TrustSystemSection = () => {
               <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                 <point.icon className="w-5 h-5 text-primary" />
               </div>
-              <p className="text-primary text-sm md:text-base leading-relaxed pt-1.5">
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed pt-1.5">
                 {point.text}
               </p>
             </motion.div>
