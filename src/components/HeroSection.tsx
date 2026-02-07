@@ -114,7 +114,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="text-sm font-medium text-primary mb-4"
           >
-            Join our exclusive Waitlist
+            Join the early access waitlist
           </motion.p>
           <motion.form
             onSubmit={handleSubmit}
