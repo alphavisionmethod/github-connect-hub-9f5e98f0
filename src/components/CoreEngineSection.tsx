@@ -7,7 +7,7 @@ const steps = [
   {
     icon: FileText,
     title: "Think",
-    quote: "Here's what I'd do, and why.",
+    quote: "SITA drafts decisions and plans actions. Nothing is executed yet.",
   },
   {
     icon: Shield,
