@@ -60,7 +60,7 @@ const CoreEngineSection = () => {
           className="text-center mb-12"
         >
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-primary/10 text-primary border border-primary/20 mb-4">
-            How It Works
+            How SITA Works
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
             Think. Check. Act. <span className="gradient-text">Prove.</span>
