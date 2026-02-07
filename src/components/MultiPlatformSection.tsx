@@ -7,54 +7,92 @@ const MultiPlatformSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-28 md:py-36 px-6 md:px-8 relative overflow-hidden">
+    <section
+      ref={ref}
+      className="relative overflow-hidden"
+      style={{ background: "#0B0812", padding: "120px 24px" }}
+    >
       {/* Subtle radial glow behind center */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] rounded-full"
           style={{
             background:
-              "radial-gradient(ellipse, hsl(270 91% 55% / 0.07), transparent 70%)",
+              "radial-gradient(ellipse, hsl(270 91% 55% / 0.06), hsl(38 95% 54% / 0.03) 50%, transparent 70%)",
           }}
         />
       </div>
 
-      <div className="container-narrow relative z-10">
-        {/* Header — tight + elevated */}
+      <div className="relative z-10 max-w-[1100px] mx-auto">
+        {/* Eyebrow + Headline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center"
+          style={{ marginBottom: 72 }}
         >
-          <span className="inline-block px-3 py-1 rounded-full text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground/70 border border-border/30 mb-8">
+          <span
+            className="inline-block rounded-full uppercase"
+            style={{
+              fontSize: 12,
+              letterSpacing: "0.14em",
+              color: "rgba(242,180,92,0.8)",
+              marginBottom: 16,
+              padding: "4px 14px",
+              border: "1px solid rgba(242,180,92,0.15)",
+            }}
+          >
             Where SITA runs
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
+          <h2
+            className="mx-auto"
+            style={{
+              fontSize: "clamp(36px, 5vw, 56px)",
+              fontWeight: 600,
+              lineHeight: 1.15,
+              color: "#FFFFFF",
+              maxWidth: 900,
+              marginTop: 16,
+            }}
+          >
             SITA shows up where decisions already happen.
           </h2>
         </motion.div>
 
-        {/* 1 center dominant + 2 satellites */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6 items-stretch">
-          {/* LEFT — Web Dashboard (secondary) */}
+        {/* Cards row — 3 columns */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-3"
+          style={{ gap: 32 }}
+        >
+          {/* LEFT — Web dashboard (secondary) */}
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-3 p-6 rounded-xl text-center"
             style={{
-              background: "#0E0B14",
-              border: "1px solid hsl(270 60% 50% / 0.1)",
+              background: "#120E1A",
+              border: "1px solid rgba(255,255,255,0.06)",
+              borderRadius: 16,
+              padding: 28,
             }}
           >
-            <div className="w-10 h-10 rounded-lg bg-muted/40 flex items-center justify-center mx-auto mb-4">
-              <Monitor className="w-5 h-5 text-muted-foreground" />
+            <div
+              className="flex items-center justify-center"
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: 10,
+                background: "rgba(139,92,246,0.1)",
+                marginBottom: 20,
+              }}
+            >
+              <Monitor style={{ width: 20, height: 20, color: "rgba(139,92,246,0.6)" }} />
             </div>
-            <h3 className="text-sm font-semibold text-foreground mb-3">
+            <h3 style={{ fontSize: 18, fontWeight: 500, color: "#FFFFFF", marginBottom: 10 }}>
               Web dashboard
             </h3>
-            <p className="text-xs text-muted-foreground leading-loose">
+            <p style={{ fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,0.7)", margin: 0 }}>
               Review decisions.
               <br />
               Approve actions.
@@ -63,52 +101,72 @@ const MultiPlatformSection = () => {
             </p>
           </motion.div>
 
-          {/* CENTER — Mobile (primary, dominant) */}
+          {/* CENTER — Mobile access (PRIMARY) */}
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.35 }}
-            className="md:col-span-6 p-10 md:p-12 rounded-xl text-center relative"
             style={{
-              background: "#0E0B14",
-              border: "1px solid hsl(270 60% 50% / 0.12)",
+              background: "#181227",
+              border: "1px solid rgba(242,180,92,0.25)",
+              borderRadius: 18,
+              padding: 36,
               boxShadow:
-                "0 0 50px hsl(270 91% 55% / 0.05), 0 0 80px hsl(38 95% 54% / 0.03)",
+                "0 0 50px rgba(139,92,246,0.08), 0 0 80px rgba(242,180,92,0.05)",
             }}
           >
-            <div className="relative z-10">
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center mx-auto mb-6">
-                <Smartphone className="w-7 h-7 text-accent" />
-              </div>
-              <h3 className="text-lg font-bold text-foreground mb-3">
-                Mobile access
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">
-                Approve, pause, or escalate actions instantly.
-                <br />
-                Control doesn't wait for a desk.
-              </p>
+            <div
+              className="flex items-center justify-center"
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                background:
+                  "linear-gradient(135deg, rgba(139,92,246,0.15), rgba(242,180,92,0.12))",
+                marginBottom: 22,
+                boxShadow: "0 0 20px rgba(242,180,92,0.1)",
+              }}
+            >
+              <Smartphone style={{ width: 22, height: 22, color: "#F2B45C" }} />
             </div>
+            <h3 style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF", marginBottom: 12 }}>
+              Mobile access
+            </h3>
+            <p style={{ fontSize: 15, lineHeight: 1.6, color: "rgba(255,255,255,0.85)", margin: 0 }}>
+              Approve, pause, or escalate actions instantly.
+              <br />
+              Control doesn't wait for a desk.
+            </p>
           </motion.div>
 
-          {/* RIGHT — Integrations (secondary) */}
+          {/* RIGHT — Your existing tools (secondary) */}
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-3 p-6 rounded-xl text-center"
             style={{
-              background: "#0E0B14",
-              border: "1px solid hsl(270 60% 50% / 0.1)",
+              background: "#120E1A",
+              border: "1px solid rgba(255,255,255,0.06)",
+              borderRadius: 16,
+              padding: 28,
             }}
           >
-            <div className="w-10 h-10 rounded-lg bg-muted/40 flex items-center justify-center mx-auto mb-4">
-              <Plug className="w-5 h-5 text-muted-foreground" />
+            <div
+              className="flex items-center justify-center"
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: 10,
+                background: "rgba(242,180,92,0.08)",
+                marginBottom: 20,
+              }}
+            >
+              <Plug style={{ width: 20, height: 20, color: "rgba(242,180,92,0.55)" }} />
             </div>
-            <h3 className="text-sm font-semibold text-foreground mb-3">
+            <h3 style={{ fontSize: 18, fontWeight: 500, color: "#FFFFFF", marginBottom: 10 }}>
               Your existing tools
             </h3>
-            <p className="text-xs text-muted-foreground leading-loose">
+            <p style={{ fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,0.7)", margin: 0 }}>
               SITA connects to what you already use.
               <br />
               Rolled out carefully, in phases.
@@ -116,12 +174,17 @@ const MultiPlatformSection = () => {
           </motion.div>
         </div>
 
-        {/* Bottom anchor sentence — high contrast */}
+        {/* Bottom anchor line */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-center text-sm text-foreground/70 mt-16 tracking-wide"
+          className="text-center"
+          style={{
+            fontSize: 14,
+            color: "rgba(255,255,255,0.6)",
+            marginTop: 64,
+          }}
         >
           No hardware. No gimmicks. Just software that works.
         </motion.p>
