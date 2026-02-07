@@ -104,7 +104,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12"
           >
-            The AI that manages your business, finances, and life—under your rules.
+            A governed AI system for life and business. Nothing acts without permission. Every action leaves a receipt.
           </motion.p>
 
           {/* CTA Form */}
