@@ -106,7 +106,7 @@ const CoreEngineSection = () => {
                       {/* Quote */}
                       <div className="flex-1">
                         <p className="text-muted-foreground text-sm leading-relaxed italic">
-                          "{step.quote}"
+                          {step.quote}
                         </p>
                       </div>
 
