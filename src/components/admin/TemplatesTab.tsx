@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Plus, Edit2, Trash2, Mail, Eye, Crown, Rocket, Users, FileText, Copy
+  Plus, Edit2, Trash2, Mail, Eye, Crown, Rocket, Users, FileText, Copy, Sparkles
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import TemplateEditorModal from "./TemplateEditorModal";
+import { PRESET_TEMPLATES } from "./presetTemplates";
 
 interface Template {
   id: string;
@@ -158,16 +159,46 @@ const TemplatesTab = () => {
             Reusable email templates for your campaigns
           </p>
         </div>
-        <button
-          onClick={() => {
-            setEditingTemplate(null);
-            setShowEditor(true);
-          }}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium hover:opacity-90 transition-all"
-        >
-          <Plus className="w-4 h-4" />
-          Create Template
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={async () => {
+              try {
+                for (const preset of PRESET_TEMPLATES) {
+                  const { data: existing } = await supabase
+                    .from("email_templates")
+                    .select("id")
+                    .eq("name", preset.name)
+                    .maybeSingle();
+
+                  if (!existing) {
+                    const { error } = await supabase
+                      .from("email_templates")
+                      .insert(preset);
+                    if (error) throw error;
+                  }
+                }
+                await fetchTemplates();
+                toast({ title: "Preset Templates Added", description: "Default SITA templates have been seeded." });
+              } catch (error: any) {
+                toast({ title: "Error", description: error.message, variant: "destructive" });
+              }
+            }}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl border border-primary/30 bg-primary/5 text-primary font-medium hover:bg-primary/10 transition-all"
+          >
+            <Sparkles className="w-4 h-4" />
+            Seed Defaults
+          </button>
+          <button
+            onClick={() => {
+              setEditingTemplate(null);
+              setShowEditor(true);
+            }}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium hover:opacity-90 transition-all"
+          >
+            <Plus className="w-4 h-4" />
+            Create Template
+          </button>
+        </div>
       </div>
 
       {/* Templates by Category */}
