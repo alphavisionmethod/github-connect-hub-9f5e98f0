@@ -92,9 +92,9 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
           >
-            <span className="text-foreground">Most AI's talk.</span>
+            <span className="text-foreground">Most AIs talk.</span>
             <br />
-            <span className="gradient-text">SITA OS does.</span>
+            <span className="gradient-text">SITA executes — under your rules.</span>
           </motion.h1>
 
           {/* Subheadline */}
