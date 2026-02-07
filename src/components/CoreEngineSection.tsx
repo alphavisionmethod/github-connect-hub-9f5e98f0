@@ -86,14 +86,15 @@ const CoreEngineSection = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="relative group flex items-center"
               >
+                {/* Step number - outside MagneticCard to avoid transform clipping */}
+                <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center z-20">
+                  <span className="text-xs font-bold gradient-text">{index + 1}</span>
+                </div>
+
                 {/* Card */}
                 <div className="flex-1">
                   <MagneticCard className="h-full">
                     <div className="glass-card-hover p-5 lg:p-6 h-full min-h-[280px] flex flex-col">
-                      {/* Step number */}
-                      <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center z-10">
-                        <span className="text-xs font-bold gradient-text">{index + 1}</span>
-                      </div>
 
                       {/* Icon */}
                       <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 group-hover:from-primary/30 group-hover:to-accent/20 transition-all duration-300">
