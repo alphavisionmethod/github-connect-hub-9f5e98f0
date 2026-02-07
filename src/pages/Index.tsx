@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import CoreEngineSection from "@/components/CoreEngineSection";
+import TrustSystemSection from "@/components/TrustSystemSection";
 import ThreeDesksSection from "@/components/ThreeDesksSection";
 import BoardOfAdvisorsSection from "@/components/BoardOfAdvisorsSection";
 import AutonomyLadderSection from "@/components/AutonomyLadderSection";
@@ -18,6 +19,7 @@ const Index = () => {
       <FloatingNav />
       <HeroSection />
       <CoreEngineSection />
+      <TrustSystemSection />
       <ThreeDesksSection />
       <BoardOfAdvisorsSection />
       <AutonomyLadderSection />
