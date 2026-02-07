@@ -11,7 +11,7 @@ const MultiPlatformSection = () => {
       {/* Subtle radial glow behind center */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] rounded-full"
           style={{
             background:
               "radial-gradient(ellipse, hsl(270 91% 55% / 0.07), transparent 70%)",
@@ -20,14 +20,14 @@ const MultiPlatformSection = () => {
       </div>
 
       <div className="container-narrow relative z-10">
-        {/* Header */}
+        {/* Header — tight + elevated */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground border border-border/40 mb-8">
+          <span className="inline-block px-3 py-1 rounded-full text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground/70 border border-border/30 mb-8">
             Where SITA runs
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
@@ -35,79 +35,93 @@ const MultiPlatformSection = () => {
           </h2>
         </motion.div>
 
-        {/* 1 center + 2 satellites layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6 items-center">
-          {/* Left satellite — Web Dashboard */}
+        {/* 1 center dominant + 2 satellites */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6 items-stretch">
+          {/* LEFT — Web Dashboard (secondary) */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-3 p-6 rounded-2xl border border-border/30 bg-card/40 text-center"
+            className="md:col-span-3 p-6 rounded-xl text-center"
+            style={{
+              background: "#0E0B14",
+              border: "1px solid hsl(270 60% 50% / 0.1)",
+            }}
           >
-            <div className="w-10 h-10 rounded-lg bg-muted/60 flex items-center justify-center mx-auto mb-4">
+            <div className="w-10 h-10 rounded-lg bg-muted/40 flex items-center justify-center mx-auto mb-4">
               <Monitor className="w-5 h-5 text-muted-foreground" />
             </div>
-            <h3 className="text-sm font-semibold text-foreground mb-1.5">
+            <h3 className="text-sm font-semibold text-foreground mb-3">
               Web dashboard
             </h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              Review decisions, approve actions, and audit history in one place.
+            <p className="text-xs text-muted-foreground leading-loose">
+              Review decisions.
+              <br />
+              Approve actions.
+              <br />
+              Audit everything in one place.
             </p>
           </motion.div>
 
-          {/* Center dominant — Mobile Access */}
+          {/* CENTER — Mobile (primary, dominant) */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.35 }}
-            className="md:col-span-6 p-10 rounded-2xl border border-primary/20 bg-card/60 text-center relative"
+            className="md:col-span-6 p-10 md:p-12 rounded-xl text-center relative"
+            style={{
+              background: "#0E0B14",
+              border: "1px solid hsl(270 60% 50% / 0.12)",
+              boxShadow:
+                "0 0 50px hsl(270 91% 55% / 0.05), 0 0 80px hsl(38 95% 54% / 0.03)",
+            }}
           >
-            {/* Subtle glow ring */}
-            <div
-              className="absolute inset-0 rounded-2xl pointer-events-none"
-              style={{
-                boxShadow:
-                  "inset 0 0 60px hsl(270 91% 55% / 0.06), 0 0 40px hsl(270 91% 55% / 0.04)",
-              }}
-            />
             <div className="relative z-10">
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center mx-auto mb-5">
+              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/15 to-accent/10 flex items-center justify-center mx-auto mb-6">
                 <Smartphone className="w-7 h-7 text-accent" />
               </div>
-              <h3 className="text-lg font-bold text-foreground mb-2">
+              <h3 className="text-lg font-bold text-foreground mb-3">
                 Mobile access
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mx-auto">
-                Approve, pause, or escalate actions on the go.
+                Approve, pause, or escalate actions instantly.
+                <br />
+                Control doesn't wait for a desk.
               </p>
             </div>
           </motion.div>
 
-          {/* Right satellite — Existing Tools */}
+          {/* RIGHT — Integrations (secondary) */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 24 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:col-span-3 p-6 rounded-2xl border border-border/30 bg-card/40 text-center"
+            className="md:col-span-3 p-6 rounded-xl text-center"
+            style={{
+              background: "#0E0B14",
+              border: "1px solid hsl(270 60% 50% / 0.1)",
+            }}
           >
-            <div className="w-10 h-10 rounded-lg bg-muted/60 flex items-center justify-center mx-auto mb-4">
+            <div className="w-10 h-10 rounded-lg bg-muted/40 flex items-center justify-center mx-auto mb-4">
               <Plug className="w-5 h-5 text-muted-foreground" />
             </div>
-            <h3 className="text-sm font-semibold text-foreground mb-1.5">
+            <h3 className="text-sm font-semibold text-foreground mb-3">
               Your existing tools
             </h3>
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              SITA connects to the systems you already use — rolled out in phases.
+            <p className="text-xs text-muted-foreground leading-loose">
+              SITA connects to what you already use.
+              <br />
+              Rolled out carefully, in phases.
             </p>
           </motion.div>
         </div>
 
-        {/* Bottom muted note */}
+        {/* Bottom anchor sentence — high contrast */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-center text-xs text-muted-foreground/60 mt-14"
+          className="text-center text-sm text-foreground/70 mt-16 tracking-wide"
         >
           No hardware. No gimmicks. Just software that works.
         </motion.p>
