@@ -12,7 +12,7 @@ const steps = [
   {
     icon: Shield,
     title: "Check",
-    quote: "Is this allowed by your rules?",
+    quote: ["You review, approve, edit, or reject.", "Clear context. No black boxes."],
   },
   {
     icon: UserCheck,
