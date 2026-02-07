@@ -22,7 +22,7 @@ const steps = [
   {
     icon: Zap,
     title: "Act",
-    quote: "Done. Here's exactly what I did.",
+    quote: ["SITA executes only what you approved.", "Within strict permissions."],
   },
   {
     icon: Receipt,
