@@ -54,13 +54,7 @@ const SovereignBackerSection = () => {
             className="max-w-xl mx-auto"
             style={{ fontSize: "16px", color: "rgba(255,255,255,0.55)" }}
           >
-            Choose beta access or partner access. Both are invite-only.
-          </p>
-          <p
-            className="max-w-xl mx-auto mt-3"
-            style={{ fontSize: "13px", color: "rgba(255,255,255,0.35)" }}
-          >
-            We review every request. Small cohorts only.
+            Choose beta or partner access. Every request is reviewed. Invite-only.
           </p>
         </motion.div>
 
@@ -117,7 +111,7 @@ const SovereignBackerSection = () => {
                 >
                   <span
                     className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: "rgba(242, 180, 92, 0.5)" }}
+                    style={{ background: "rgba(255,255,255,0.3)" }}
                   />
                   {bullet}
                 </li>
@@ -125,12 +119,21 @@ const SovereignBackerSection = () => {
             </ul>
 
             <button
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all hover:bg-white/5"
+              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all"
               style={{
                 fontSize: "14px",
                 background: "transparent",
                 border: "1px solid rgba(255,255,255,0.15)",
                 color: "#fff",
+                boxShadow: "none",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.3)";
+                e.currentTarget.style.boxShadow = "0 0 20px hsl(270 91% 55% / 0.15), 0 0 30px hsl(38 95% 54% / 0.1)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
+                e.currentTarget.style.boxShadow = "none";
               }}
             >
               Request beta invite
@@ -175,7 +178,7 @@ const SovereignBackerSection = () => {
               className="mb-5"
               style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}
             >
-              Fund the build. Influence the roadmap. Get founder access.
+              Fund the build. Shape the roadmap. Founder access.
             </p>
 
             {/* Bullets */}
@@ -192,7 +195,7 @@ const SovereignBackerSection = () => {
                 >
                   <span
                     className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: "rgba(242, 180, 92, 0.5)" }}
+                    style={{ background: "rgba(255,255,255,0.3)" }}
                   />
                   {bullet}
                 </li>
