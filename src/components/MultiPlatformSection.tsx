@@ -177,7 +177,7 @@ const MultiPlatformSection = () => {
             <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
               <li>Connects to what you already use</li>
               <li>Rolled out carefully, in phases</li>
-              <li>Receipts + approvals carry across</li>
+              <li>Approvals + receipts stay attached</li>
             </ul>
           </motion.div>
         </div>
