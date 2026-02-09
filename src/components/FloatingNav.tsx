@@ -8,7 +8,7 @@ const navItems = [
   { label: "Engine", href: "#core-engine" },
   { label: "Desks", href: "#three-desks" },
   { label: "Autonomy", href: "#autonomy-ladder" },
-  { label: "Backers", href: "#backer" },
+  { label: "Access", href: "#backer" },
   { label: "FAQ", href: "#faq" },
 ];
 
