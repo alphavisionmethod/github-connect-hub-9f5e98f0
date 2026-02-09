@@ -58,37 +58,41 @@ const MultiPlatformSection = () => {
           className="grid grid-cols-1 md:grid-cols-3"
           style={{ gap: 32 }}
         >
-          {/* LEFT — Web dashboard (secondary) */}
+          {/* LEFT — Web dashboard */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             style={{
-              background: "#120E1A",
-              border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: 16,
-              padding: 28,
+              background: "#181227",
+              border: "1px solid rgba(242,180,92,0.25)",
+              borderRadius: 18,
+              padding: 32,
+              boxShadow:
+                "0 0 50px rgba(139,92,246,0.08), 0 0 80px rgba(242,180,92,0.05)",
             }}
           >
             <div
               className="flex items-center justify-center"
               style={{
-                width: 40,
-                height: 40,
-                borderRadius: 10,
-                background: "rgba(139,92,246,0.1)",
-                marginBottom: 20,
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                background:
+                  "linear-gradient(135deg, rgba(139,92,246,0.15), rgba(242,180,92,0.12))",
+                marginBottom: 22,
+                boxShadow: "0 0 20px rgba(242,180,92,0.1)",
               }}
             >
-              <Monitor style={{ width: 20, height: 20, color: "rgba(139,92,246,0.6)" }} />
+              <Monitor style={{ width: 22, height: 22, color: "#F2B45C" }} />
             </div>
-            <h3 style={{ fontSize: 18, fontWeight: 500, color: "#FFFFFF", marginBottom: 10 }}>
+            <h3 style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF", marginBottom: 12 }}>
               Web dashboard
             </h3>
-            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.7)", marginBottom: 8 }}>
+            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.85)", marginBottom: 10 }}>
               Governance &amp; audit center
             </p>
-            <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.7)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
+            <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
               <li>Review decisions SITA proposes</li>
               <li>Approve / reject actions</li>
               <li>See receipts &amp; logs</li>
@@ -96,7 +100,7 @@ const MultiPlatformSection = () => {
             </ul>
           </motion.div>
 
-          {/* CENTER — Mobile access (PRIMARY) */}
+          {/* CENTER — Mobile access */}
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -105,7 +109,7 @@ const MultiPlatformSection = () => {
               background: "#181227",
               border: "1px solid rgba(242,180,92,0.25)",
               borderRadius: 18,
-              padding: 36,
+              padding: 32,
               boxShadow:
                 "0 0 50px rgba(139,92,246,0.08), 0 0 80px rgba(242,180,92,0.05)",
             }}
@@ -130,7 +134,7 @@ const MultiPlatformSection = () => {
             <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.85)", marginBottom: 10 }}>
               Fast approvals &amp; safety controls on the go
             </p>
-            <ul style={{ fontSize: 15, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
+            <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
               <li>Approve a task quickly</li>
               <li>Pause SITA instantly</li>
               <li>Escalate to a human decision</li>
@@ -138,37 +142,41 @@ const MultiPlatformSection = () => {
             </ul>
           </motion.div>
 
-          {/* RIGHT — Your existing tools (secondary) */}
+          {/* RIGHT — Your existing tools */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
             style={{
-              background: "#120E1A",
-              border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: 16,
-              padding: 28,
+              background: "#181227",
+              border: "1px solid rgba(242,180,92,0.25)",
+              borderRadius: 18,
+              padding: 32,
+              boxShadow:
+                "0 0 50px rgba(139,92,246,0.08), 0 0 80px rgba(242,180,92,0.05)",
             }}
           >
             <div
               className="flex items-center justify-center"
               style={{
-                width: 40,
-                height: 40,
-                borderRadius: 10,
-                background: "rgba(242,180,92,0.08)",
-                marginBottom: 20,
+                width: 44,
+                height: 44,
+                borderRadius: 12,
+                background:
+                  "linear-gradient(135deg, rgba(139,92,246,0.15), rgba(242,180,92,0.12))",
+                marginBottom: 22,
+                boxShadow: "0 0 20px rgba(242,180,92,0.1)",
               }}
             >
-              <Plug style={{ width: 20, height: 20, color: "rgba(242,180,92,0.55)" }} />
+              <Plug style={{ width: 22, height: 22, color: "#F2B45C" }} />
             </div>
-            <h3 style={{ fontSize: 18, fontWeight: 500, color: "#FFFFFF", marginBottom: 10 }}>
+            <h3 style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF", marginBottom: 12 }}>
               Your existing tools
             </h3>
-            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.7)", marginBottom: 8 }}>
+            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.85)", marginBottom: 10 }}>
               Integration without the chaos
             </p>
-            <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.7)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
+            <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
               <li>SITA connects to what you already use</li>
               <li>Rolled out carefully, in phases</li>
               <li>Not "connect everything and pray"</li>
