@@ -33,7 +33,7 @@ const MultiPlatformSection = () => {
           style={{ marginBottom: 72 }}
         >
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-accent/10 text-accent border border-accent/20 mb-4">
-            Where SITA runs
+            WHERE IT RUNS
           </span>
           <h2
             className="mx-auto"
