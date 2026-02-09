@@ -46,7 +46,7 @@ const MultiPlatformSection = () => {
               marginTop: 16,
             }}
           >
-            SITA shows up where decisions already happen.
+            <span className="gradient-text">SITA shows up</span> where decisions already happen.
           </h2>
         </motion.div>
 
