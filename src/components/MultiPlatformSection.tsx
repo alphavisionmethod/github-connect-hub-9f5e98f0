@@ -196,7 +196,7 @@ const MultiPlatformSection = () => {
             marginTop: 64,
           }}
         >
-          No hardware. No gimmicks. Just software that works.
+          Software-first. Governed by design.
         </motion.p>
       </div>
     </section>
