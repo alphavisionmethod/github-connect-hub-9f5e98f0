@@ -97,11 +97,33 @@ const SovereignBackerSection = () => {
               Founding Members (Beta)
             </h3>
             <p
-              className="mb-7 flex-1"
+              className="mb-5"
               style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}
             >
-              Priority access to the private beta.
+              Be among the first to run SITA — and shape what ships.
             </p>
+
+            {/* Bullets */}
+            <ul className="space-y-2.5 mb-8 flex-1" style={{ paddingLeft: 0, listStyle: "none" }}>
+              {[
+                "Private beta access (rolling cohorts)",
+                "Founder-led onboarding + direct feedback",
+                "Early pricing locked when plans launch",
+              ].map((bullet, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3"
+                  style={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
+                >
+                  <span
+                    className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                    style={{ background: "rgba(242, 180, 92, 0.5)" }}
+                  />
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+
             <button
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all hover:bg-white/5"
               style={{
@@ -114,6 +136,12 @@ const SovereignBackerSection = () => {
               Request beta invite
               <ArrowRight className="w-4 h-4" />
             </button>
+            <p
+              className="text-center mt-3"
+              style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}
+            >
+              No payment. Invite-only.
+            </p>
           </motion.div>
 
           {/* Partners card */}
@@ -144,11 +172,33 @@ const SovereignBackerSection = () => {
               Partners (Capital + Strategic)
             </h3>
             <p
-              className="mb-7 flex-1"
+              className="mb-5"
               style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}
             >
-              Fund development and shape the roadmap.
+              Fund the build. Influence the roadmap. Get founder access.
             </p>
+
+            {/* Bullets */}
+            <ul className="space-y-2.5 mb-8 flex-1" style={{ paddingLeft: 0, listStyle: "none" }}>
+              {[
+                "Monthly demos + build updates",
+                "Direct line to founders + priority requests",
+                "Early access to roadmap + governance model",
+              ].map((bullet, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3"
+                  style={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
+                >
+                  <span
+                    className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
+                    style={{ background: "rgba(242, 180, 92, 0.5)" }}
+                  />
+                  {bullet}
+                </li>
+              ))}
+            </ul>
+
             <button
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all hover:opacity-90"
               style={{
@@ -162,6 +212,12 @@ const SovereignBackerSection = () => {
               Talk to the founders
               <ArrowRight className="w-4 h-4" />
             </button>
+            <p
+              className="text-center mt-3"
+              style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}
+            >
+              For angels &amp; strategic partners.
+            </p>
           </motion.div>
         </div>
 
