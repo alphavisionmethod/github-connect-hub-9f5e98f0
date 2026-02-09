@@ -82,13 +82,15 @@ const MultiPlatformSection = () => {
             <h3 style={{ fontSize: 18, fontWeight: 500, color: "#FFFFFF", marginBottom: 10 }}>
               Web dashboard
             </h3>
-            <p style={{ fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,0.7)", margin: 0 }}>
-              Review decisions.
-              <br />
-              Approve actions.
-              <br />
-              Audit everything in one place.
+            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.7)", marginBottom: 8 }}>
+              Governance &amp; audit center
             </p>
+            <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.7)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
+              <li>Review decisions SITA proposes</li>
+              <li>Approve / reject actions</li>
+              <li>See receipts &amp; logs</li>
+              <li>Manage permissions</li>
+            </ul>
           </motion.div>
 
           {/* CENTER — Mobile access (PRIMARY) */}
@@ -122,11 +124,15 @@ const MultiPlatformSection = () => {
             <h3 style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF", marginBottom: 12 }}>
               Mobile access
             </h3>
-            <p style={{ fontSize: 15, lineHeight: 1.6, color: "rgba(255,255,255,0.85)", margin: 0 }}>
-              Approve, pause, or escalate actions instantly.
-              <br />
-              Control doesn't wait for a desk.
+            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.85)", marginBottom: 10 }}>
+              Fast approvals &amp; safety controls on the go
             </p>
+            <ul style={{ fontSize: 15, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
+              <li>Approve a task quickly</li>
+              <li>Pause SITA instantly</li>
+              <li>Escalate to a human decision</li>
+              <li>Get alerts when something needs you</li>
+            </ul>
           </motion.div>
 
           {/* RIGHT — Your existing tools (secondary) */}
@@ -156,11 +162,14 @@ const MultiPlatformSection = () => {
             <h3 style={{ fontSize: 18, fontWeight: 500, color: "#FFFFFF", marginBottom: 10 }}>
               Your existing tools
             </h3>
-            <p style={{ fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,0.7)", margin: 0 }}>
-              SITA connects to what you already use.
-              <br />
-              Rolled out carefully, in phases.
+            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.7)", marginBottom: 8 }}>
+              Integration without the chaos
             </p>
+            <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.7)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
+              <li>SITA connects to what you already use</li>
+              <li>Rolled out carefully, in phases</li>
+              <li>Not "connect everything and pray"</li>
+            </ul>
           </motion.div>
         </div>
 
