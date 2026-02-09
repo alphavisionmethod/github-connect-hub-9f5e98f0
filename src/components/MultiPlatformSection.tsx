@@ -48,7 +48,7 @@ const MultiPlatformSection = () => {
           >
             <span className="gradient-text">SITA runs</span> inside the tools you already use.
           </h2>
-          <p style={{ fontSize: "clamp(16px, 2vw, 20px)", color: "rgba(255,255,255,0.6)", maxWidth: 900, margin: "24px auto 0", lineHeight: 1.5, whiteSpace: "nowrap" }}>
+          <p style={{ fontSize: "clamp(16px, 2vw, 20px)", color: "rgba(255,255,255,0.6)", maxWidth: 640, margin: "24px auto 0", lineHeight: 1.5, textAlign: "center" }}>
             Review in one place. Approve anywhere. Execute across your tools — with receipts.
           </p>
         </motion.div>
@@ -56,7 +56,7 @@ const MultiPlatformSection = () => {
         {/* Cards row — 3 columns */}
         <div
           className="grid grid-cols-1 md:grid-cols-3"
-          style={{ gap: 32 }}
+          style={{ gap: 32, alignItems: "stretch" }}
         >
           {/* LEFT — Web dashboard */}
           <motion.div
@@ -67,9 +67,10 @@ const MultiPlatformSection = () => {
               background: "#181227",
               border: "1px solid rgba(242,180,92,0.15)",
               borderRadius: 18,
-              padding: 32,
-              boxShadow:
-                "0 0 50px rgba(139,92,246,0.08), 0 0 80px rgba(242,180,92,0.05)",
+              padding: "32px 32px 40px",
+              boxShadow: "0 0 50px rgba(139,92,246,0.08), 0 0 80px rgba(242,180,92,0.05)",
+              display: "flex",
+              flexDirection: "column" as const,
             }}
           >
             <div
@@ -108,9 +109,10 @@ const MultiPlatformSection = () => {
               background: "#181227",
               border: "1px solid rgba(242,180,92,0.15)",
               borderRadius: 18,
-              padding: 32,
-              boxShadow:
-                "0 0 50px rgba(139,92,246,0.08), 0 0 80px rgba(242,180,92,0.05)",
+              padding: "32px 32px 40px",
+              boxShadow: "0 0 50px rgba(139,92,246,0.08), 0 0 80px rgba(242,180,92,0.05)",
+              display: "flex",
+              flexDirection: "column" as const,
             }}
           >
             <div
@@ -149,9 +151,10 @@ const MultiPlatformSection = () => {
               background: "#181227",
               border: "1px solid rgba(242,180,92,0.15)",
               borderRadius: 18,
-              padding: 32,
-              boxShadow:
-                "0 0 50px rgba(139,92,246,0.08), 0 0 80px rgba(242,180,92,0.05)",
+              padding: "32px 32px 40px",
+              boxShadow: "0 0 50px rgba(139,92,246,0.08), 0 0 80px rgba(242,180,92,0.05)",
+              display: "flex",
+              flexDirection: "column" as const,
             }}
           >
             <div
