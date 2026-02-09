@@ -131,7 +131,7 @@ const MultiPlatformSection = () => {
               Mobile access
             </h3>
             <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.85)", marginBottom: 10 }}>
-              Approvals &amp; safety controls
+              Approvals &amp; safeguards
             </p>
             <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
               <li>Approve actions in seconds</li>
