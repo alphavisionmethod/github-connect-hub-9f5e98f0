@@ -89,6 +89,9 @@ const MultiPlatformSection = () => {
             <h3 style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF", marginBottom: 12 }}>
               Web dashboard
             </h3>
+            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.85)", marginBottom: 10 }}>
+              Governance &amp; audit center
+            </p>
             <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
               <li>Review decisions SITA proposes</li>
               <li>Approve / reject actions</li>
@@ -127,6 +130,9 @@ const MultiPlatformSection = () => {
             <h3 style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF", marginBottom: 12 }}>
               Mobile access
             </h3>
+            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.85)", marginBottom: 10 }}>
+              Approvals &amp; safety controls
+            </p>
             <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
               <li>Approve actions in seconds</li>
               <li>Pause instantly</li>
@@ -165,6 +171,9 @@ const MultiPlatformSection = () => {
             <h3 style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF", marginBottom: 12 }}>
               Your existing tools
             </h3>
+            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.85)", marginBottom: 10 }}>
+              Integrations, governed
+            </p>
             <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
               <li>Connects to what you already use</li>
               <li>Rolled out carefully, in phases</li>
