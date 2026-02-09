@@ -131,7 +131,7 @@ const SovereignBackerSection = () => {
             Founding Backers
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Be a <span className="gradient-text">founding backer</span>
+            <span className="gradient-text">Choose your path</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Get early access, shape the product, and lock in founding status—forever.
