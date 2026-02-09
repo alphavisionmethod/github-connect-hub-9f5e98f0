@@ -1,4 +1,4 @@
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { User, Brain, Zap, Rocket } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
@@ -33,102 +33,117 @@ const levels = [
 const AutonomyLadderSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
   const [autonomyLevel, setAutonomyLevel] = useState([33]);
 
-  const currentLevel = levels.reduce((prev, curr) => {
-    return Math.abs(curr.level - autonomyLevel[0]) < Math.abs(prev.level - autonomyLevel[0])
+  const currentLevel = levels.reduce((prev, curr) =>
+    Math.abs(curr.level - autonomyLevel[0]) < Math.abs(prev.level - autonomyLevel[0])
       ? curr
-      : prev;
-  });
+      : prev
+  );
 
   const glowIntensity = autonomyLevel[0] / 100;
 
   return (
-    <section id="autonomy-ladder" ref={ref} className="section-padding relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-radial-center" />
-      
-      {/* Parallax floating orb */}
-      <motion.div 
-        style={{ y }}
-        className="absolute left-1/4 -top-20 w-72 h-72 bg-accent/5 rounded-full blur-3xl pointer-events-none"
-      />
+    <section
+      id="autonomy-ladder"
+      ref={ref}
+      className="relative overflow-hidden"
+      style={{ background: "#0B0812", padding: "120px 24px" }}
+    >
+      {/* Subtle radial glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full"
+          style={{
+            background: `radial-gradient(ellipse, hsl(270 91% 55% / ${0.04 + glowIntensity * 0.06}), hsl(38 95% 54% / ${glowIntensity * 0.05}) 50%, transparent 70%)`,
+          }}
+        />
+      </div>
 
-      {/* Dynamic golden glow based on autonomy level */}
-      <motion.div
-        animate={{
-          opacity: glowIntensity * 0.4,
-          scale: 1 + glowIntensity * 0.3,
-        }}
-        transition={{ duration: 0.5 }}
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `radial-gradient(ellipse 80% 60% at 50% 50%, hsl(var(--gold) / ${glowIntensity * 0.25}), transparent)`,
-        }}
-      />
-
-      <div className="container-narrow relative z-10">
-        {/* Section header */}
+      <div className="relative z-10 max-w-[700px] mx-auto">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center"
+          style={{ marginBottom: 56 }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-primary/10 text-primary border border-primary/20 mb-4">
+          <span
+            className="inline-block rounded-full uppercase"
+            style={{
+              fontSize: 12,
+              letterSpacing: "0.14em",
+              color: "rgba(242,180,92,0.8)",
+              padding: "4px 14px",
+              border: "1px solid rgba(242,180,92,0.15)",
+              marginBottom: 16,
+            }}
+          >
             Control You Can Adjust
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2
+            style={{
+              fontSize: "clamp(32px, 5vw, 52px)",
+              fontWeight: 600,
+              lineHeight: 1.15,
+              color: "#FFFFFF",
+              marginTop: 16,
+              marginBottom: 20,
+            }}
+          >
             You decide how much <span className="gradient-text">control to keep</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p style={{ fontSize: 16, color: "rgba(255,255,255,0.55)" }}>
             Start hands-on. Let go gradually. The choice is always yours.
           </p>
         </motion.div>
 
         {/* Interactive slider card */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 32 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="max-w-2xl mx-auto"
         >
           <div
-            className="glass-card p-8 md:p-12 transition-all duration-500"
             style={{
-              boxShadow: `0 0 ${40 + glowIntensity * 80}px hsl(var(--gold) / ${glowIntensity * 0.35})`,
-              borderColor: `hsl(var(--gold) / ${0.15 + glowIntensity * 0.35})`,
+              background: "#120E1A",
+              border: `1px solid rgba(242,180,92,${0.1 + glowIntensity * 0.2})`,
+              borderRadius: 18,
+              padding: "40px 36px",
+              boxShadow: `0 0 ${40 + glowIntensity * 60}px hsl(38 95% 54% / ${glowIntensity * 0.12}), 0 0 ${20 + glowIntensity * 40}px hsl(270 91% 55% / ${glowIntensity * 0.06})`,
+              transition: "all 0.5s ease",
             }}
           >
             {/* Current level display */}
-            <div className="text-center mb-10">
+            <div className="text-center" style={{ marginBottom: 40 }}>
               <motion.div
                 key={currentLevel.name}
                 initial={{ opacity: 0, y: 10, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.3 }}
-                className="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-4 transition-all duration-500"
+                className="inline-flex items-center justify-center"
                 style={{
-                  background: `linear-gradient(135deg, hsl(var(--primary) / ${1 - glowIntensity * 0.5}), hsl(var(--gold) / ${glowIntensity}))`,
-                  boxShadow: `0 0 ${20 + glowIntensity * 30}px hsl(var(--gold) / ${glowIntensity * 0.5})`,
+                  width: 72,
+                  height: 72,
+                  borderRadius: 18,
+                  marginBottom: 16,
+                  background: `linear-gradient(135deg, rgba(139,92,246,${1 - glowIntensity * 0.5}), rgba(242,180,92,${glowIntensity}))`,
+                  boxShadow: `0 0 ${20 + glowIntensity * 30}px hsl(38 95% 54% / ${glowIntensity * 0.4})`,
                 }}
               >
-                <currentLevel.icon className="w-10 h-10 text-background" />
+                <currentLevel.icon style={{ width: 36, height: 36, color: "#0B0812" }} />
               </motion.div>
+
               <motion.h3
                 key={`title-${currentLevel.name}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-2xl md:text-3xl font-bold mb-2"
+                style={{ fontSize: 28, fontWeight: 700, marginBottom: 8 }}
               >
                 <span
                   style={{
-                    background: `linear-gradient(135deg, hsl(var(--primary)), hsl(var(--gold) / ${0.5 + glowIntensity * 0.5}))`,
+                    background: `linear-gradient(135deg, hsl(270 91% 55%), hsl(38 95% 54% / ${0.5 + glowIntensity * 0.5}))`,
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                   }}
@@ -136,34 +151,43 @@ const AutonomyLadderSection = () => {
                   {currentLevel.name}
                 </span>
               </motion.h3>
+
               <motion.p
                 key={`desc-${currentLevel.description}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-muted-foreground text-lg"
+                style={{ fontSize: 16, color: "rgba(255,255,255,0.55)" }}
               >
                 {currentLevel.description}
               </motion.p>
             </div>
 
             {/* Endpoint labels */}
-            <div className="flex justify-between mb-3">
-              <span className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                <User className="w-4 h-4" />
+            <div className="flex justify-between" style={{ marginBottom: 12 }}>
+              <span
+                className="flex items-center gap-2"
+                style={{ fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,0.4)" }}
+              >
+                <User style={{ width: 14, height: 14 }} />
                 You decide everything
               </span>
-              <span className="text-sm font-medium flex items-center gap-2" style={{
-                background: `linear-gradient(90deg, hsl(var(--primary)), hsl(var(--gold)))`,
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}>
-                We manage everything automatically
-                <Rocket className="w-4 h-4 text-gold" />
+              <span
+                className="flex items-center gap-2"
+                style={{
+                  fontSize: 13,
+                  fontWeight: 500,
+                  background: "linear-gradient(90deg, hsl(270 91% 55%), hsl(38 95% 54%))",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                Full automation
+                <Rocket style={{ width: 14, height: 14, color: "#F2B45C" }} />
               </span>
             </div>
 
             {/* Slider */}
-            <div className="mb-8">
+            <div style={{ marginBottom: 32 }}>
               <Slider
                 value={autonomyLevel}
                 onValueChange={setAutonomyLevel}
@@ -173,7 +197,7 @@ const AutonomyLadderSection = () => {
               />
             </div>
 
-            {/* Level icon buttons */}
+            {/* Level buttons */}
             <div className="flex justify-between">
               {levels.map((level, index) => (
                 <motion.button
@@ -182,39 +206,49 @@ const AutonomyLadderSection = () => {
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                   onClick={() => setAutonomyLevel([level.level])}
-                  className={`flex flex-col items-center gap-1.5 transition-all duration-300 group ${
-                    currentLevel.level === level.level
-                      ? "opacity-100"
-                      : "opacity-40 hover:opacity-70"
-                  }`}
+                  className="flex flex-col items-center gap-1.5 transition-all duration-300"
+                  style={{
+                    opacity: currentLevel.level === level.level ? 1 : 0.4,
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                  }}
                 >
                   <div
-                    className={`w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
-                      currentLevel.level === level.level
-                        ? ""
-                        : "bg-muted group-hover:bg-muted/80"
-                    }`}
-                    style={
-                      currentLevel.level === level.level
-                        ? {
-                            background: `linear-gradient(135deg, hsl(var(--primary)), hsl(var(--gold) / ${0.5 + glowIntensity * 0.5}))`,
-                            boxShadow: `0 0 15px hsl(var(--gold) / ${glowIntensity * 0.4})`,
-                          }
-                        : undefined
-                    }
+                    className="flex items-center justify-center"
+                    style={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: 12,
+                      background:
+                        currentLevel.level === level.level
+                          ? `linear-gradient(135deg, rgba(139,92,246,${1 - glowIntensity * 0.5}), rgba(242,180,92,${0.5 + glowIntensity * 0.5}))`
+                          : "rgba(255,255,255,0.04)",
+                      boxShadow:
+                        currentLevel.level === level.level
+                          ? `0 0 15px hsl(38 95% 54% / ${glowIntensity * 0.4})`
+                          : "none",
+                      transition: "all 0.3s ease",
+                    }}
                   >
                     <level.icon
-                      className={`w-5 h-5 md:w-6 md:h-6 ${
-                        currentLevel.level === level.level
-                          ? "text-background"
-                          : "text-muted-foreground"
-                      }`}
+                      style={{
+                        width: 20,
+                        height: 20,
+                        color: currentLevel.level === level.level ? "#0B0812" : "rgba(255,255,255,0.4)",
+                      }}
                     />
                   </div>
                   <span
-                    className={`text-xs font-medium hidden sm:block ${
-                      currentLevel.level === level.level ? "gradient-text" : "text-muted-foreground"
-                    }`}
+                    className="hidden sm:block"
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 500,
+                      color:
+                        currentLevel.level === level.level
+                          ? "rgba(242,180,92,0.8)"
+                          : "rgba(255,255,255,0.35)",
+                    }}
                   >
                     Level {index + 1}
                   </span>
@@ -223,8 +257,15 @@ const AutonomyLadderSection = () => {
             </div>
 
             {/* Bottom note */}
-            <div className="mt-8 pt-6 border-t border-border text-center">
-              <span className="text-sm text-muted-foreground">
+            <div
+              className="text-center"
+              style={{
+                marginTop: 32,
+                paddingTop: 24,
+                borderTop: "1px solid rgba(255,255,255,0.06)",
+              }}
+            >
+              <span style={{ fontSize: 13, color: "rgba(255,255,255,0.4)" }}>
                 Different tasks, different levels. You're always in control of the dial.
               </span>
             </div>

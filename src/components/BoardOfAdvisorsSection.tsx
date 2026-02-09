@@ -1,7 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Crown, ChevronDown, Volume2, VolumeX } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import advisorsVideo from "@/assets/advisors-video.mp4";
 
 const fullContent = `
@@ -33,111 +32,188 @@ const BoardOfAdvisorsSection = () => {
   };
 
   return (
-    <section ref={ref} className="section-padding relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-grid opacity-10" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-gold/5 rounded-full blur-[200px] pointer-events-none" />
+    <section
+      ref={ref}
+      className="relative overflow-hidden"
+      style={{ background: "#0B0812", padding: "120px 24px" }}
+    >
+      {/* Subtle radial glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(ellipse, hsl(38 95% 54% / 0.04), hsl(270 91% 55% / 0.03) 50%, transparent 70%)",
+          }}
+        />
+      </div>
 
-      <div className="container-narrow relative z-10">
-        {/* Section header */}
+      <div className="relative z-10 max-w-[1000px] mx-auto">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16"
+          transition={{ duration: 0.6 }}
+          className="text-center"
+          style={{ marginBottom: 64 }}
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-gold/10 text-gold border border-gold/20 mb-6">
-            <Crown className="w-3.5 h-3.5" />
+          <span
+            className="inline-flex items-center gap-2 rounded-full uppercase"
+            style={{
+              fontSize: 12,
+              letterSpacing: "0.14em",
+              color: "rgba(242,180,92,0.8)",
+              padding: "4px 14px",
+              border: "1px solid rgba(242,180,92,0.15)",
+              marginBottom: 16,
+            }}
+          >
+            <Crown style={{ width: 14, height: 14 }} />
             The Vision
           </span>
-          
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+          <h2
+            style={{
+              fontSize: "clamp(32px, 5vw, 52px)",
+              fontWeight: 600,
+              lineHeight: 1.15,
+              color: "#FFFFFF",
+              marginTop: 16,
+              marginBottom: 20,
+            }}
+          >
             Give Everyone a{" "}
             <span className="gradient-text">Billionaire-Level Advisory System</span>
           </h2>
-          
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p
+            className="mx-auto"
+            style={{
+              fontSize: 16,
+              color: "rgba(255,255,255,0.55)",
+              maxWidth: 700,
+              lineHeight: 1.6,
+            }}
+          >
             A complete executive team, Family Office, and Personal Assistant across every area of your life—focused on growth, profitability, and execution.
           </p>
         </motion.div>
 
         {/* Main content card */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 32 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="max-w-5xl mx-auto"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mx-auto"
+          style={{ maxWidth: 960 }}
         >
-          <div className="glass-card rounded-3xl border border-gold/10 relative overflow-hidden">
-            {/* Decorative accent */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
-            
+          <div
+            className="relative overflow-hidden"
+            style={{
+              background: "#120E1A",
+              border: "1px solid rgba(242,180,92,0.12)",
+              borderRadius: 20,
+            }}
+          >
+            {/* Top accent line */}
+            <div
+              className="absolute top-0 left-0 right-0"
+              style={{
+                height: 1,
+                background:
+                  "linear-gradient(90deg, transparent, rgba(242,180,92,0.25), transparent)",
+              }}
+            />
+
             {/* Hero Video */}
-            <div className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden">
-              <video 
+            <div className="relative overflow-hidden" style={{ height: "clamp(240px, 30vw, 380px)" }}>
+              <video
                 ref={videoRef}
                 src={advisorsVideo}
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover object-center opacity-70"
+                className="w-full h-full object-cover object-center"
+                style={{ opacity: 0.6 }}
               />
-              {/* Gradient overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
-              
-              {/* Sound toggle button with glow animation */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: "linear-gradient(to top, #120E1A, rgba(18,14,26,0.5) 60%, transparent)",
+                }}
+              />
+
+              {/* Sound toggle */}
               <motion.button
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.3 }}
+                transition={{ delay: 0.5 }}
                 onClick={toggleMute}
-                className="absolute bottom-4 right-4 p-3 rounded-full bg-background/30 backdrop-blur-md border border-white/10 hover:bg-background/50 transition-all duration-300 group animate-pulse"
+                className="absolute bottom-4 right-4 animate-pulse"
                 style={{
-                  boxShadow: isMuted 
-                    ? "0 0 15px hsl(var(--gold) / 0.3), 0 0 30px hsl(var(--gold) / 0.15)" 
-                    : "0 0 20px hsl(var(--gold) / 0.5), 0 0 40px hsl(var(--gold) / 0.25)",
+                  padding: 12,
+                  borderRadius: "50%",
+                  background: "rgba(11,8,18,0.4)",
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  cursor: "pointer",
+                  boxShadow: isMuted
+                    ? "0 0 15px hsl(38 95% 54% / 0.2)"
+                    : "0 0 25px hsl(38 95% 54% / 0.35)",
                 }}
                 aria-label={isMuted ? "Unmute video" : "Mute video"}
               >
                 {isMuted ? (
-                  <VolumeX className="w-5 h-5 text-white/80 group-hover:text-white transition-colors" />
+                  <VolumeX style={{ width: 20, height: 20, color: "rgba(255,255,255,0.7)" }} />
                 ) : (
-                  <Volume2 className="w-5 h-5 text-gold group-hover:text-gold/80 transition-colors" />
+                  <Volume2 style={{ width: 20, height: 20, color: "#F2B45C" }} />
                 )}
               </motion.button>
             </div>
 
-            {/* Content section */}
-            <div className="p-8 md:p-12">
+            {/* Content */}
+            <div style={{ padding: "36px 40px 40px" }}>
               {/* Opening statement */}
-              <div className="space-y-4 mb-8">
-                <motion.p 
+              <div style={{ marginBottom: 32 }}>
+                <motion.p
                   initial={{ opacity: 0, x: -20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="text-2xl md:text-3xl lg:text-4xl font-light text-foreground/80 leading-relaxed"
+                  style={{
+                    fontSize: "clamp(24px, 3vw, 36px)",
+                    fontWeight: 300,
+                    color: "rgba(255,255,255,0.7)",
+                    lineHeight: 1.3,
+                    marginBottom: 12,
+                  }}
                 >
                   Most people manage life alone.
                 </motion.p>
-                <motion.p 
+                <motion.p
                   initial={{ opacity: 0, x: -20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.5 }}
-                  className="text-2xl md:text-3xl lg:text-4xl font-bold leading-relaxed"
+                  style={{
+                    fontSize: "clamp(24px, 3vw, 36px)",
+                    fontWeight: 700,
+                    lineHeight: 1.3,
+                  }}
                 >
-                  <span className="bg-gradient-to-r from-gold via-gold/90 to-amber-500 bg-clip-text text-transparent">
-                    Billionaires build systems.
-                  </span>
+                  <span className="gradient-text">Billionaires build systems.</span>
                 </motion.p>
               </div>
 
               {/* Supporting text */}
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-3xl"
+                style={{
+                  fontSize: 16,
+                  color: "rgba(255,255,255,0.55)",
+                  lineHeight: 1.7,
+                  marginBottom: 32,
+                  maxWidth: 700,
+                }}
               >
                 They rely on teams—family offices, investment committees, department heads, personal chiefs of staff—whose job is to reduce mistakes, defend time, and move with certainty.
               </motion.p>
@@ -145,53 +221,101 @@ const BoardOfAdvisorsSection = () => {
               {/* Expanded content */}
               <motion.div
                 initial={false}
-                animate={{ 
+                animate={{
                   height: isExpanded ? "auto" : 0,
-                  opacity: isExpanded ? 1 : 0 
+                  opacity: isExpanded ? 1 : 0,
                 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 className="overflow-hidden"
               >
-                <div className="pt-8 border-t border-border/30">
-                  <div className="space-y-8">
-                    {fullContent.split('\n\n').filter(p => p.trim()).map((paragraph, idx) => {
-                      if (paragraph.includes('**')) {
-                        const parts = paragraph.split('**');
+                <div
+                  style={{
+                    paddingTop: 32,
+                    borderTop: "1px solid rgba(255,255,255,0.06)",
+                  }}
+                >
+                  <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+                    {fullContent
+                      .split("\n\n")
+                      .filter((p) => p.trim())
+                      .map((paragraph, idx) => {
+                        if (paragraph.includes("**")) {
+                          const parts = paragraph.split("**");
+                          return (
+                            <div key={idx}>
+                              <h4
+                                style={{
+                                  fontSize: 18,
+                                  fontWeight: 600,
+                                  color: "#FFFFFF",
+                                  marginBottom: 10,
+                                }}
+                              >
+                                {parts[1]}
+                              </h4>
+                              <p
+                                style={{
+                                  fontSize: 14,
+                                  color: "rgba(255,255,255,0.55)",
+                                  lineHeight: 1.7,
+                                  margin: 0,
+                                }}
+                              >
+                                {parts[2]}
+                              </p>
+                            </div>
+                          );
+                        }
                         return (
-                          <div key={idx} className="space-y-3">
-                            <h4 className="text-xl font-semibold text-foreground">{parts[1]}</h4>
-                            <p className="text-muted-foreground leading-relaxed">{parts[2]}</p>
-                          </div>
+                          <p
+                            key={idx}
+                            style={{
+                              fontSize: 14,
+                              color: "rgba(255,255,255,0.55)",
+                              lineHeight: 1.7,
+                              margin: 0,
+                            }}
+                          >
+                            {paragraph}
+                          </p>
                         );
-                      }
-                      return (
-                        <p key={idx} className="text-muted-foreground leading-relaxed">
-                          {paragraph}
-                        </p>
-                      );
-                    })}
+                      })}
                   </div>
                 </div>
               </motion.div>
 
               {/* Learn More button */}
-              <Button
+              <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                variant="outline"
-                className="mt-8 px-8 py-6 rounded-xl border-gold/30 text-gold hover:bg-gold/10 hover:border-gold/50 transition-all duration-300 group"
+                className="flex items-center gap-2 transition-all hover:opacity-90"
+                style={{
+                  marginTop: 32,
+                  padding: "12px 28px",
+                  borderRadius: 12,
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(242,180,92,0.2)",
+                  color: "rgba(242,180,92,0.8)",
+                  fontSize: 15,
+                  fontWeight: 500,
+                  cursor: "pointer",
+                }}
               >
-                <span className="text-base font-medium">{isExpanded ? "Show Less" : "Learn More"}</span>
-                <motion.span
-                  animate={{ rotate: isExpanded ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ChevronDown className="w-5 h-5 ml-2" />
+                {isExpanded ? "Show Less" : "Learn More"}
+                <motion.span animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                  <ChevronDown style={{ width: 18, height: 18 }} />
                 </motion.span>
-              </Button>
+              </button>
             </div>
-            
-            {/* Bottom decorative accent */}
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
+
+            {/* Bottom accent line */}
+            <div
+              className="absolute bottom-0 left-0 right-0"
+              style={{
+                height: 1,
+                background:
+                  "linear-gradient(90deg, transparent, rgba(242,180,92,0.1), transparent)",
+              }}
+            />
           </div>
         </motion.div>
       </div>

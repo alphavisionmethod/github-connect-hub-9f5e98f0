@@ -34,11 +34,9 @@ const InvestorDataRoom = () => {
       } else {
         setIsSuccess(true);
         setEmail("");
-        
-        // Send admin notification (fire and forget)
-        supabase.functions.invoke("notify-investor-lead", {
-          body: { email },
-        }).catch(console.error);
+        supabase.functions
+          .invoke("notify-investor-lead", { body: { email } })
+          .catch(console.error);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -49,71 +47,128 @@ const InvestorDataRoom = () => {
   };
 
   return (
-    <section ref={ref} className="section-padding relative overflow-hidden">
-      {/* Light leak effects */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+    <section
+      ref={ref}
+      className="relative overflow-hidden"
+      style={{ background: "#0B0812", padding: "120px 24px" }}
+    >
+      {/* Subtle radial glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-1/2 left-1/3 w-[500px] h-[400px] rounded-full"
+          style={{
+            background: "radial-gradient(ellipse, hsl(270 91% 55% / 0.04), transparent 70%)",
+          }}
+        />
+        <div
+          className="absolute bottom-1/3 right-1/4 w-[400px] h-[300px] rounded-full"
+          style={{
+            background: "radial-gradient(ellipse, hsl(38 95% 54% / 0.03), transparent 70%)",
+          }}
+        />
+      </div>
 
-      <div className="container-narrow relative z-10">
+      <div className="relative z-10 max-w-[680px] mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 32 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="max-w-2xl mx-auto text-center"
         >
-          {/* Locked card */}
+          {/* Card */}
           <motion.div
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="relative glass-card p-12 border-gold/20 hover:border-gold/50 transition-all duration-500"
+            className="relative text-center"
+            style={{
+              background: "#120E1A",
+              border: "1px solid rgba(242,180,92,0.12)",
+              borderRadius: 20,
+              padding: "56px 40px",
+              transition: "border-color 0.5s ease",
+              ...(isHovered ? { borderColor: "rgba(242,180,92,0.3)" } : {}),
+            }}
           >
             {/* Biometric scan effect on hover */}
             <motion.div
               initial={false}
               animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
-              className="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl"
+              className="absolute inset-0 pointer-events-none overflow-hidden"
+              style={{ borderRadius: 20 }}
             >
-              {/* Scanning line */}
               <motion.div
                 initial={{ y: "-100%" }}
                 animate={isHovered ? { y: "200%" } : { y: "-100%" }}
                 transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent blur-sm"
+                className="absolute left-0 right-0"
+                style={{
+                  height: 2,
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(242,180,92,0.4), transparent)",
+                  filter: "blur(1px)",
+                }}
               />
-              {/* Grid pattern */}
-              <div className="absolute inset-0 opacity-20" style={{
-                backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 20px, hsl(var(--accent) / 0.1) 20px, hsl(var(--accent) / 0.1) 21px),
-                                  repeating-linear-gradient(90deg, transparent, transparent 20px, hsl(var(--accent) / 0.1) 20px, hsl(var(--accent) / 0.1) 21px)`
-              }} />
+              <div
+                className="absolute inset-0"
+                style={{
+                  opacity: 0.15,
+                  backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(242,180,92,0.08) 20px, rgba(242,180,92,0.08) 21px),
+                                    repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(242,180,92,0.08) 20px, rgba(242,180,92,0.08) 21px)`,
+                }}
+              />
             </motion.div>
 
             {/* Lock icon */}
             <motion.div
               animate={isHovered ? { scale: 1.1, rotate: 5 } : { scale: 1, rotate: 0 }}
               transition={{ duration: 0.3 }}
-              className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-gold/20 to-accent/10 mb-6"
+              className="inline-flex items-center justify-center"
+              style={{
+                width: 72,
+                height: 72,
+                borderRadius: 18,
+                background: "linear-gradient(135deg, rgba(242,180,92,0.15), rgba(139,92,246,0.08))",
+                marginBottom: 24,
+              }}
             >
               {isHovered ? (
-                <Fingerprint className="w-10 h-10 text-gold animate-pulse" />
+                <Fingerprint className="animate-pulse" style={{ width: 36, height: 36, color: "#F2B45C" }} />
               ) : (
-                <Lock className="w-10 h-10 text-gold" />
+                <Lock style={{ width: 36, height: 36, color: "#F2B45C" }} />
               )}
             </motion.div>
 
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-semibold mb-4">
-              <Shield className="w-3 h-3" />
-              INSTITUTIONAL ACCESS
+            <div
+              className="inline-flex items-center gap-2 rounded-full uppercase"
+              style={{
+                fontSize: 11,
+                letterSpacing: "0.12em",
+                color: "rgba(242,180,92,0.8)",
+                padding: "4px 12px",
+                border: "1px solid rgba(242,180,92,0.2)",
+                marginBottom: 20,
+              }}
+            >
+              <Shield style={{ width: 12, height: 12 }} />
+              Institutional Access
             </div>
 
             {/* Title */}
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+            <h2
+              style={{
+                fontSize: "clamp(24px, 3vw, 32px)",
+                fontWeight: 600,
+                color: "#FFFFFF",
+                marginBottom: 16,
+              }}
+            >
               Institutional Grade Autonomy
             </h2>
-            <p className="text-muted-foreground mb-6">
+            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.55)", marginBottom: 8, lineHeight: 1.6 }}>
               SITA OS is solving the liability crisis of the Agentic Age.
-              <br />
-              <span className="text-foreground/80">For venture partners and accredited operators.</span>
+            </p>
+            <p style={{ fontSize: 15, color: "rgba(255,255,255,0.7)", marginBottom: 32 }}>
+              For venture partners and accredited operators.
             </p>
 
             {/* Form or Success */}
@@ -121,38 +176,69 @@ const InvestorDataRoom = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex items-center justify-center gap-3 py-4 px-6 rounded-xl bg-accent/10 border border-accent/30"
+                className="flex items-center justify-center gap-3"
+                style={{
+                  padding: "16px 24px",
+                  borderRadius: 14,
+                  background: "rgba(242,180,92,0.08)",
+                  border: "1px solid rgba(242,180,92,0.2)",
+                }}
               >
-                <Check className="w-5 h-5 text-accent" />
-                <span className="text-accent font-medium">Access request received. We'll be in touch.</span>
+                <Check style={{ width: 20, height: 20, color: "#F2B45C" }} />
+                <span style={{ color: "rgba(242,180,92,0.9)", fontWeight: 500, fontSize: 14 }}>
+                  Access request received. We'll be in touch.
+                </span>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col sm:flex-row gap-3"
+                style={{ maxWidth: 440, margin: "0 auto" }}
+              >
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="investor@fund.com"
                   required
-                  className="flex-1 px-5 py-4 rounded-xl bg-secondary border border-gold/20 focus:border-gold/50 focus:ring-2 focus:ring-gold/20 outline-none transition-all text-foreground placeholder:text-muted-foreground"
+                  style={{
+                    flex: 1,
+                    padding: "14px 20px",
+                    borderRadius: 12,
+                    background: "rgba(255,255,255,0.03)",
+                    border: "1px solid rgba(242,180,92,0.15)",
+                    color: "#FFFFFF",
+                    fontSize: 14,
+                    outline: "none",
+                  }}
                 />
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="relative px-8 py-4 rounded-xl font-semibold text-background overflow-hidden disabled:opacity-50 group"
+                  className="relative overflow-hidden disabled:opacity-50"
                   style={{
-                    background: "linear-gradient(135deg, hsl(var(--gold)), hsl(var(--accent)))",
+                    padding: "14px 28px",
+                    borderRadius: 12,
+                    fontWeight: 600,
+                    fontSize: 14,
+                    color: "#0B0812",
+                    background: "linear-gradient(135deg, hsl(38 95% 54%), hsl(38 100% 65%))",
+                    cursor: "pointer",
+                    border: "none",
                   }}
                 >
-                  {/* Biometric scan effect on button */}
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                    <Fingerprint className="w-5 h-5 transition-transform group-hover:scale-110" />
+                    <Fingerprint style={{ width: 18, height: 18 }} />
                     {isSubmitting ? "Verifying..." : "Request Access"}
                   </span>
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)",
+                    }}
                     animate={{ x: ["-100%", "100%"] }}
                     transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
                   />
