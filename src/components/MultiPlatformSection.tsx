@@ -30,7 +30,7 @@ const MultiPlatformSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="text-center"
-          style={{ marginBottom: 72 }}
+          style={{ marginBottom: 88 }}
         >
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-accent/10 text-accent border border-accent/20 mb-4">
             WHERE IT RUNS
@@ -65,7 +65,7 @@ const MultiPlatformSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             style={{
               background: "#181227",
-              border: "1px solid rgba(242,180,92,0.25)",
+              border: "1px solid rgba(242,180,92,0.15)",
               borderRadius: 18,
               padding: 32,
               boxShadow:
@@ -106,7 +106,7 @@ const MultiPlatformSection = () => {
             transition={{ duration: 0.7, delay: 0.35 }}
             style={{
               background: "#181227",
-              border: "1px solid rgba(242,180,92,0.25)",
+              border: "1px solid rgba(242,180,92,0.15)",
               borderRadius: 18,
               padding: 32,
               boxShadow:
@@ -147,7 +147,7 @@ const MultiPlatformSection = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
             style={{
               background: "#181227",
-              border: "1px solid rgba(242,180,92,0.25)",
+              border: "1px solid rgba(242,180,92,0.15)",
               borderRadius: 18,
               padding: 32,
               boxShadow:
