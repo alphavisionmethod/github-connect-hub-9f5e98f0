@@ -89,14 +89,10 @@ const MultiPlatformSection = () => {
             <h3 style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF", marginBottom: 12 }}>
               Web dashboard
             </h3>
-            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.85)", marginBottom: 10 }}>
-              Governance &amp; audit center
-            </p>
             <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
               <li>Review decisions SITA proposes</li>
               <li>Approve / reject actions</li>
-              <li>See receipts &amp; logs</li>
-              <li>Manage permissions</li>
+              <li>Receipts, logs, permissions</li>
             </ul>
           </motion.div>
 
@@ -131,14 +127,10 @@ const MultiPlatformSection = () => {
             <h3 style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF", marginBottom: 12 }}>
               Mobile access
             </h3>
-            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.85)", marginBottom: 10 }}>
-              Fast approvals &amp; safety controls on the go
-            </p>
             <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
-              <li>Approve a task quickly</li>
-              <li>Pause SITA instantly</li>
-              <li>Escalate to a human decision</li>
-              <li>Get alerts when something needs you</li>
+              <li>Approve actions in seconds</li>
+              <li>Pause instantly</li>
+              <li>Escalate to human decision</li>
             </ul>
           </motion.div>
 
@@ -173,13 +165,10 @@ const MultiPlatformSection = () => {
             <h3 style={{ fontSize: 20, fontWeight: 600, color: "#FFFFFF", marginBottom: 12 }}>
               Your existing tools
             </h3>
-            <p style={{ fontSize: 13, fontWeight: 500, color: "rgba(242,180,92,0.85)", marginBottom: 10 }}>
-              Integration without the chaos
-            </p>
             <ul style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.85)", margin: 0, paddingLeft: 16, listStyleType: "disc" }}>
-              <li>SITA connects to what you already use</li>
+              <li>Connects to what you already use</li>
               <li>Rolled out carefully, in phases</li>
-              <li>Not "connect everything and pray"</li>
+              <li>Receipts + approvals carry across</li>
             </ul>
           </motion.div>
         </div>
