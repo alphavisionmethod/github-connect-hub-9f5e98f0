@@ -32,17 +32,7 @@ const MultiPlatformSection = () => {
           className="text-center"
           style={{ marginBottom: 72 }}
         >
-          <span
-            className="inline-block rounded-full uppercase"
-            style={{
-              fontSize: 12,
-              letterSpacing: "0.14em",
-              color: "rgba(242,180,92,0.8)",
-              marginBottom: 16,
-              padding: "4px 14px",
-              border: "1px solid rgba(242,180,92,0.15)",
-            }}
-          >
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-accent/10 text-accent border border-accent/20 mb-4">
             Where SITA runs
           </span>
           <h2
