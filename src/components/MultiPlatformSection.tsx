@@ -39,7 +39,7 @@ const MultiPlatformSection = () => {
             className="mx-auto"
             style={{
               fontSize: "clamp(36px, 5vw, 56px)",
-              fontWeight: 600,
+              fontWeight: 700,
               lineHeight: 1.15,
               color: "#FFFFFF",
               maxWidth: 900,
