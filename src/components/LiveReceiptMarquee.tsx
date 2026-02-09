@@ -14,66 +14,45 @@ const receipts = [
   { id: "7730", action: "Payroll Processing Complete", result: "42 employees paid", policy: "Standard" },
 ];
 
+// Duplicate for seamless loop
 const allReceipts = [...receipts, ...receipts];
 
 const LiveReceiptMarquee = () => {
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{
-        background: "#0B0812",
-        padding: "28px 0",
-        borderTop: "1px solid rgba(255,255,255,0.04)",
-        borderBottom: "1px solid rgba(255,255,255,0.04)",
-      }}
-    >
+    <section className="relative py-8 overflow-hidden border-y border-border/50 bg-obsidian-light/50">
       {/* Gradient fade edges */}
-      <div
-        className="absolute left-0 top-0 bottom-0 z-10 pointer-events-none"
-        style={{
-          width: 120,
-          background: "linear-gradient(to right, #0B0812, transparent)",
-        }}
-      />
-      <div
-        className="absolute right-0 top-0 bottom-0 z-10 pointer-events-none"
-        style={{
-          width: 120,
-          background: "linear-gradient(to left, #0B0812, transparent)",
-        }}
-      />
+      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
       {/* Marquee */}
       <motion.div
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        transition={{
+          duration: 60,
+          repeat: Infinity,
+          ease: "linear",
+        }}
         className="flex gap-8 whitespace-nowrap"
       >
         {allReceipts.map((receipt, index) => (
           <div
             key={`${receipt.id}-${index}`}
-            className="inline-flex items-center gap-4"
-            style={{
-              padding: "10px 20px",
-              borderRadius: 10,
-              background: "#120E1A",
-              border: "1px solid rgba(255,255,255,0.04)",
-            }}
+            className="inline-flex items-center gap-4 px-6 py-3 rounded-lg bg-secondary/50 border border-border/50"
           >
-            <div className="flex items-center gap-2">
-              <Receipt style={{ width: 14, height: 14, color: "rgba(242,180,92,0.6)" }} />
-              <span style={{ fontFamily: "monospace", fontSize: 11, color: "rgba(255,255,255,0.35)" }}>
+            <div className="flex items-center gap-2 text-accent">
+              <Receipt className="w-4 h-4" />
+              <span className="font-mono text-xs text-muted-foreground">
                 RECEIPT #{receipt.id}
               </span>
             </div>
-            <span style={{ fontSize: 13, fontWeight: 500, color: "rgba(255,255,255,0.75)" }}>
+            <span className="text-sm font-medium text-foreground">
               {receipt.action}.
             </span>
-            <span style={{ fontSize: 13, fontWeight: 600, color: "rgba(242,180,92,0.8)" }}>
+            <span className="text-sm text-accent font-semibold">
               {receipt.result}.
             </span>
-            <span className="flex items-center gap-1" style={{ fontSize: 11, color: "rgba(255,255,255,0.35)" }}>
-              <CheckCircle2 style={{ width: 12, height: 12, color: "rgba(139,92,246,0.6)" }} />
+            <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+              <CheckCircle2 className="w-3 h-3 text-primary" />
               Policy: {receipt.policy}
             </span>
           </div>

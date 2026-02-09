@@ -9,16 +9,8 @@ const FooterSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <footer
-      ref={ref}
-      className="relative"
-      style={{
-        background: "#0B0812",
-        padding: "48px 24px",
-        borderTop: "1px solid rgba(255,255,255,0.06)",
-      }}
-    >
-      <div className="max-w-[1100px] mx-auto">
+    <footer ref={ref} className="relative py-16 px-6 md:px-8 border-t border-border">
+      <div className="container-narrow">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -27,39 +19,32 @@ const FooterSection = () => {
         >
           {/* Logo and tagline */}
           <div className="flex items-center gap-4">
-            <img
-              src={sitaLogo}
-              alt="SITA OS"
-              style={{ width: 40, height: 40, borderRadius: 10 }}
+            <img 
+              src={sitaLogo} 
+              alt="SITA OS" 
+              className="w-10 h-10 rounded-lg"
             />
             <div>
-              <span style={{ fontWeight: 600, fontSize: 15, color: "#FFFFFF" }}>SITA OS</span>
-              <p style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", margin: 0 }}>
-                Governed Execution OS
-              </p>
+              <span className="font-bold text-foreground">SITA OS</span>
+              <p className="text-xs text-muted-foreground">Governed Execution OS</p>
             </div>
           </div>
 
           {/* Copyright */}
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.35)" }}>
+          <div className="text-sm text-muted-foreground text-center">
             © {new Date().getFullYear()} SITA OS. All rights reserved.
           </div>
 
           {/* Links */}
-          <div className="flex items-center gap-6" style={{ fontSize: 13, color: "rgba(255,255,255,0.45)" }}>
-            <Link to="/privacy" className="hover:text-white transition-colors">
-              Privacy
-            </Link>
-            <Link to="/terms" className="hover:text-white transition-colors">
-              Terms
-            </Link>
-            <Link
-              to="/dashboard"
-              className="transition-colors"
-              style={{ opacity: 0.3, padding: 8, borderRadius: 8 }}
+          <div className="flex items-center gap-6 text-sm text-muted-foreground">
+            <Link to="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
+            <Link to="/terms" className="hover:text-foreground transition-colors">Terms</Link>
+            <Link 
+              to="/dashboard" 
+              className="p-2 rounded-lg hover:bg-muted/50 transition-colors opacity-30 hover:opacity-60"
               aria-label="Admin access"
             >
-              <Lock style={{ width: 16, height: 16 }} />
+              <Lock className="w-4 h-4" />
             </Link>
           </div>
         </motion.div>

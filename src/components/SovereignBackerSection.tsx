@@ -79,7 +79,7 @@ const SovereignBackerSection = () => {
               lineHeight: 1.15,
             }}
           >
-            <span className="gradient-text">Choose</span> your path
+            Choose your path
           </h2>
           <p
             className="max-w-xl mx-auto"

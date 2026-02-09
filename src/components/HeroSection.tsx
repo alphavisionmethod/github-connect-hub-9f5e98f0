@@ -25,6 +25,7 @@ const HeroSection = () => {
 
       if (error) {
         if (error.code === "23505") {
+          // Unique violation - email already exists
           alert("You're already on the waitlist!");
         } else {
           throw error;
@@ -43,25 +44,15 @@ const HeroSection = () => {
   };
 
   return (
-    <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: "#0B0812", padding: "120px 24px" }}
-    >
-      {/* Subtle radial glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full"
-          style={{
-            background:
-              "radial-gradient(ellipse, hsl(270 91% 55% / 0.1), hsl(38 95% 54% / 0.05) 50%, transparent 70%)",
-          }}
-        />
-      </div>
+    <section className="relative min-h-screen flex items-center justify-center section-padding overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-grid opacity-50" />
+      <div className="absolute inset-0 bg-radial-top" />
+      
+      {/* Ambient glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[120px]" />
 
-      {/* Grid texture */}
-      <div className="absolute inset-0 bg-grid opacity-30" />
-
-      <div className="relative z-10 max-w-[900px] mx-auto">
+      <div className="container-narrow relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -73,18 +64,13 @@ const HeroSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            style={{ marginBottom: 32 }}
+            className="mb-8"
           >
-            <img
-              src={sitaLogo}
-              alt="SITA OS"
-              className="mx-auto"
-              style={{
-                width: 80,
-                height: 80,
-                borderRadius: 16,
-                boxShadow: "0 0 60px hsl(270 91% 55% / 0.3), 0 0 80px hsl(38 95% 54% / 0.2)",
-              }}
+            <img 
+              src={sitaLogo} 
+              alt="SITA OS" 
+              className="w-20 h-20 mx-auto rounded-2xl shadow-lg"
+              style={{ boxShadow: "var(--shadow-glow-combined)" }}
             />
           </motion.div>
 
@@ -93,30 +79,10 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            style={{ marginBottom: 32 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-8"
           >
-            <span
-              className="inline-flex items-center gap-2 rounded-full uppercase"
-              style={{
-                fontSize: 12,
-                letterSpacing: "0.14em",
-                color: "rgba(242,180,92,0.8)",
-                padding: "6px 16px",
-                border: "1px solid rgba(242,180,92,0.15)",
-              }}
-            >
-              <span
-                className="animate-pulse"
-                style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: "50%",
-                  background: "hsl(38 95% 54%)",
-                  display: "inline-block",
-                }}
-              />
-              Your AI That Acts
-            </span>
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-sm font-medium text-muted-foreground">Your AI That Acts</span>
           </motion.div>
 
           {/* Headline */}
@@ -124,15 +90,9 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            style={{
-              fontSize: "clamp(36px, 5vw, 72px)",
-              fontWeight: 700,
-              lineHeight: 1.1,
-              color: "#FFFFFF",
-              marginBottom: 24,
-            }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
           >
-            Most AIs talk.
+            <span className="text-foreground">Most AIs talk.</span>
             <br />
             <span className="gradient-text">SITA executes — under your rules.</span>
           </motion.h1>
@@ -142,40 +102,26 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            style={{
-              fontSize: "clamp(16px, 2vw, 20px)",
-              lineHeight: 1.6,
-              color: "rgba(255,255,255,0.55)",
-              maxWidth: 640,
-              margin: "0 auto 48px",
-            }}
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12"
           >
             A governed AI system for life and business. Nothing acts without permission. Every action leaves a receipt.
           </motion.p>
 
-          {/* CTA Label */}
+          {/* CTA Form */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            style={{
-              fontSize: 14,
-              fontWeight: 500,
-              color: "rgba(242,180,92,0.8)",
-              marginBottom: 16,
-            }}
+            className="text-sm font-medium text-primary mb-4"
           >
             Join the early access waitlist
           </motion.p>
-
-          {/* CTA Form */}
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-            style={{ maxWidth: 440, margin: "0 auto" }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto"
           >
             <input
               type="email"
@@ -183,23 +129,12 @@ const HeroSection = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              style={{
-                width: "100%",
-                flex: "1",
-                padding: "14px 20px",
-                borderRadius: 12,
-                background: "#120E1A",
-                border: "1px solid rgba(255,255,255,0.1)",
-                color: "#FFFFFF",
-                fontSize: 15,
-                outline: "none",
-              }}
+              className="w-full sm:flex-1 px-5 py-4 rounded-xl bg-secondary border border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground placeholder:text-muted-foreground"
             />
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn-hero pulse-glow whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{ width: "auto", padding: "14px 32px" }}
+              className="btn-hero pulse-glow w-full sm:w-auto whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="relative z-10">
                 {isSubmitting ? "Joining..." : "Join Us!"}
@@ -212,12 +147,7 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1 }}
-            style={{
-              marginTop: 16,
-              fontSize: 12,
-              letterSpacing: "0.06em",
-              color: "rgba(255,255,255,0.35)",
-            }}
+            className="mt-4 text-xs text-muted-foreground/70 tracking-wide"
           >
             Shadow mode by default • Human approval required • Full audit trail
           </motion.p>
@@ -227,23 +157,16 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            style={{ marginTop: 56, maxWidth: 780, margin: "56px auto 0" }}
+            className="mt-12 max-w-3xl mx-auto"
           >
-            <div
-              style={{
-                padding: 8,
-                borderRadius: 18,
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.06)",
-                boxShadow: "0 0 60px hsl(270 91% 55% / 0.15), 0 0 80px hsl(38 95% 54% / 0.1)",
-              }}
-            >
+            <div className="glass-card p-2 rounded-2xl" style={{ boxShadow: "var(--shadow-glow-combined)" }}>
               <video
                 src={sitaDemo}
                 muted
                 controls
                 playsInline
-                style={{ width: "100%", borderRadius: 12, aspectRatio: "16/9" }}
+                className="w-full rounded-xl"
+                style={{ aspectRatio: "16/9" }}
               />
             </div>
           </motion.div>
