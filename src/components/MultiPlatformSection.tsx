@@ -48,7 +48,7 @@ const MultiPlatformSection = () => {
           >
             <span className="gradient-text">SITA runs</span> inside the tools you already use.
           </h2>
-          <p style={{ fontSize: "clamp(16px, 2vw, 20px)", color: "rgba(255,255,255,0.6)", maxWidth: 640, margin: "16px auto 0", lineHeight: 1.5 }}>
+          <p style={{ fontSize: "clamp(16px, 2vw, 20px)", color: "rgba(255,255,255,0.6)", maxWidth: 900, margin: "16px auto 0", lineHeight: 1.5, whiteSpace: "nowrap" }}>
             Review in one place. Approve anywhere. Execute across your tools — with receipts.
           </p>
         </motion.div>
