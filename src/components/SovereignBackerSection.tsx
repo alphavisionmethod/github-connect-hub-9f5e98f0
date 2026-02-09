@@ -139,12 +139,6 @@ const SovereignBackerSection = () => {
               Request beta invite
               <ArrowRight className="w-4 h-4" />
             </button>
-            <p
-              className="text-center mt-3"
-              style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}
-            >
-              No payment. Invite-only.
-            </p>
           </motion.div>
 
           {/* Partners card */}
