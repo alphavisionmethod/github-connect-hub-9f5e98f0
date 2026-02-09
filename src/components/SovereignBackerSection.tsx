@@ -63,13 +63,7 @@ const SovereignBackerSection = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span
-            className="inline-block mb-4 uppercase tracking-[0.14em]"
-            style={{
-              fontSize: "12px",
-              color: "rgba(242, 180, 92, 0.8)",
-            }}
-          >
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-accent/10 text-accent border border-accent/20 mb-4">
             Access
           </span>
           <h2
