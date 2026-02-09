@@ -8,7 +8,7 @@ const SovereignBackerSection = () => {
 
   return (
     <section
-      id="backer"
+      id="request-access"
       ref={ref}
       className="relative overflow-hidden"
       style={{ background: "#0B0812", paddingTop: 128, paddingBottom: 128 }}
