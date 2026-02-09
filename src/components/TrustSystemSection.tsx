@@ -30,54 +30,117 @@ const TrustSystemSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative section-padding overflow-hidden" ref={ref}>
-      <div className="absolute inset-0 bg-radial-top opacity-30" />
+    <section
+      ref={ref}
+      className="relative overflow-hidden"
+      style={{ background: "#0B0812", padding: "120px 24px" }}
+    >
+      {/* Subtle radial glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[350px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(ellipse, hsl(270 91% 55% / 0.06), transparent 70%)",
+          }}
+        />
+      </div>
 
-      <div className="container-narrow relative z-10">
-        {/* Section header */}
+      <div className="relative z-10 max-w-[800px] mx-auto">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center"
+          style={{ marginBottom: 56 }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-primary/10 text-primary border border-primary/20 mb-4">
+          <span
+            className="inline-block rounded-full uppercase"
+            style={{
+              fontSize: 12,
+              letterSpacing: "0.14em",
+              color: "rgba(242,180,92,0.8)",
+              padding: "4px 14px",
+              border: "1px solid rgba(242,180,92,0.15)",
+              marginBottom: 16,
+            }}
+          >
             Trust System
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+          <h2
+            style={{
+              fontSize: "clamp(32px, 5vw, 52px)",
+              fontWeight: 600,
+              lineHeight: 1.15,
+              color: "#FFFFFF",
+              marginTop: 16,
+              marginBottom: 20,
+            }}
+          >
             Built for trust, <span className="gradient-text">not surprises</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p
+            style={{ fontSize: 16, color: "rgba(255,255,255,0.55)", maxWidth: 600, margin: "0 auto" }}
+          >
             SITA is designed like a system, not a chatbot.
           </p>
         </motion.div>
 
         {/* Trust bullets */}
-        <div className="max-w-2xl mx-auto space-y-4">
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           {trustPoints.map((point, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              className="flex items-start gap-4 p-4 rounded-xl bg-secondary/50 border border-border/50 hover:border-primary/30 transition-colors duration-300"
+              className="flex items-start gap-4"
+              style={{
+                padding: 20,
+                borderRadius: 14,
+                background: "#120E1A",
+                border: "1px solid rgba(255,255,255,0.06)",
+              }}
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center">
-                <point.icon className="w-5 h-5 text-accent" />
+              <div
+                className="flex-shrink-0 flex items-center justify-center"
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 10,
+                  background: "linear-gradient(135deg, rgba(139,92,246,0.12), rgba(242,180,92,0.08))",
+                }}
+              >
+                <point.icon style={{ width: 20, height: 20, color: "rgba(242,180,92,0.7)" }} />
               </div>
-              <p className="text-muted-foreground text-sm md:text-base leading-relaxed pt-1.5">
+              <p
+                style={{
+                  fontSize: 15,
+                  lineHeight: 1.6,
+                  color: "rgba(255,255,255,0.7)",
+                  margin: 0,
+                  paddingTop: 8,
+                }}
+              >
                 {point.text}
               </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Closer */}
+        {/* Bottom anchor */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center text-sm md:text-base text-muted-foreground mt-12 font-medium"
+          className="text-center"
+          style={{
+            fontSize: 14,
+            color: "rgba(255,255,255,0.6)",
+            marginTop: 64,
+            fontWeight: 500,
+          }}
         >
           If it can't be proven, it doesn't run.
         </motion.p>

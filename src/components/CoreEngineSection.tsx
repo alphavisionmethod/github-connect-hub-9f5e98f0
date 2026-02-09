@@ -1,7 +1,6 @@
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FileText, Shield, UserCheck, Zap, Receipt, ChevronRight, ChevronDown } from "lucide-react";
-import MagneticCard from "./MagneticCard";
+import { FileText, Shield, UserCheck, Zap, Receipt } from "lucide-react";
 
 const steps = [
   {
@@ -34,136 +33,155 @@ const steps = [
 const CoreEngineSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [80, -80]);
 
   return (
-    <section id="core-engine" ref={ref} className="section-padding relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-radial-center" />
-      
-      {/* Parallax floating orb */}
-      <motion.div 
-        style={{ y }}
-        className="absolute -right-32 top-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"
-      />
+    <section
+      id="core-engine"
+      ref={ref}
+      className="relative overflow-hidden"
+      style={{ background: "#0B0812", padding: "120px 24px" }}
+    >
+      {/* Subtle radial glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full"
+          style={{
+            background:
+              "radial-gradient(ellipse, hsl(270 91% 55% / 0.06), transparent 70%)",
+          }}
+        />
+      </div>
 
-      <div className="container-narrow relative z-10">
-        {/* Section header */}
+      <div className="relative z-10 max-w-[1100px] mx-auto">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center"
+          style={{ marginBottom: 72 }}
         >
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-primary/10 text-primary border border-primary/20 mb-4">
+          <span
+            className="inline-block rounded-full uppercase"
+            style={{
+              fontSize: 12,
+              letterSpacing: "0.14em",
+              color: "rgba(242,180,92,0.8)",
+              padding: "4px 14px",
+              border: "1px solid rgba(242,180,92,0.15)",
+              marginBottom: 16,
+            }}
+          >
             How SITA Works
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+          <h2
+            className="mx-auto"
+            style={{
+              fontSize: "clamp(32px, 5vw, 52px)",
+              fontWeight: 600,
+              lineHeight: 1.15,
+              color: "#FFFFFF",
+              maxWidth: 900,
+              marginTop: 16,
+            }}
+          >
             Think. Check. Act. <span className="gradient-text">Prove.</span>
           </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-            Every AI should be accountable. SITA OS thinks through your request, 
-            checks it against your rules, acts only with permission, 
-            and gives you proof of what happened. Simple.
+          <p
+            className="mx-auto"
+            style={{
+              fontSize: 16,
+              color: "rgba(255,255,255,0.55)",
+              maxWidth: 700,
+              marginTop: 20,
+              lineHeight: 1.6,
+            }}
+          >
+            Every AI should be accountable. SITA OS thinks through your request,
+            checks it against your rules, acts only with permission,
+            and gives you proof of what happened.
           </p>
         </motion.div>
 
-        {/* Process flow */}
-        <div className="relative">
-          {/* Connector line */}
-          <div className="hidden xl:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-primary/20 via-accent/30 to-primary/20 -translate-y-1/2" />
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-5">
-            {steps.map((step, index) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative group flex items-center"
+        {/* Process cards — 5 columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5" style={{ gap: 20 }}>
+          {steps.map((step, index) => (
+            <motion.div
+              key={step.title}
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 + index * 0.1 }}
+              style={{
+                background: "#120E1A",
+                border: "1px solid rgba(255,255,255,0.06)",
+                borderRadius: 16,
+                padding: 28,
+              }}
+            >
+              {/* Step number */}
+              <div
+                className="flex items-center justify-center"
+                style={{
+                  width: 28,
+                  height: 28,
+                  borderRadius: "50%",
+                  background: "rgba(139,92,246,0.12)",
+                  marginBottom: 16,
+                  fontSize: 12,
+                  fontWeight: 700,
+                  color: "rgba(139,92,246,0.7)",
+                }}
               >
-                {/* Step number - outside MagneticCard to avoid transform clipping */}
-                <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-background border-2 border-primary/50 flex items-center justify-center z-20">
-                  <span className="text-xs font-bold gradient-text">{index + 1}</span>
-                </div>
+                {index + 1}
+              </div>
 
-                {/* Card */}
-                <div className="flex-1">
-                  <MagneticCard className="h-full">
-                    <div className="glass-card-hover p-5 lg:p-6 h-full min-h-[280px] flex flex-col">
+              {/* Icon */}
+              <div
+                className="flex items-center justify-center"
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 10,
+                  background: "rgba(139,92,246,0.1)",
+                  marginBottom: 16,
+                }}
+              >
+                <step.icon style={{ width: 20, height: 20, color: "rgba(139,92,246,0.6)" }} />
+              </div>
 
-                      {/* Icon */}
-                      <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 group-hover:from-primary/30 group-hover:to-accent/20 transition-all duration-300">
-                        <step.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors duration-300" />
-                      </div>
+              {/* Title */}
+              <h3 style={{ fontSize: 18, fontWeight: 500, color: "#FFFFFF", marginBottom: 10 }}>
+                {step.title}
+              </h3>
 
-                      {/* Title */}
-                      <h3 className="text-lg font-bold text-foreground mb-3">{step.title}</h3>
-                      
-                      {/* Quote */}
-                      <div className="flex-1">
-                        <p className="text-muted-foreground text-sm leading-relaxed italic">
-                          {Array.isArray(step.quote) ? step.quote.map((line, i) => (
-                            <span key={i} className={i > 0 ? "block mt-2" : "block"}>{line}</span>
-                          )) : step.quote}
-                        </p>
-                      </div>
-
-                      {/* Glow effect on hover */}
-                      <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                        style={{
-                          background: "radial-gradient(circle at 50% 50%, hsl(270 91% 55% / 0.1), transparent 70%)",
-                        }}
-                      />
-                    </div>
-                  </MagneticCard>
-                </div>
-
-                {/* Horizontal Arrow connector for desktop - positioned between cards */}
-                {index < steps.length - 1 && (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
-                    className="hidden xl:flex items-center justify-center absolute -right-3 top-1/2 -translate-y-1/2 z-20"
-                  >
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-r from-primary to-accent flex items-center justify-center shadow-lg">
-                      <ChevronRight className="w-4 h-4 text-background" />
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Vertical Arrow connector for mobile/tablet */}
-                {index < steps.length - 1 && (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
-                    className="xl:hidden absolute -bottom-5 left-1/2 -translate-x-1/2 z-20"
-                  >
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-b from-primary to-accent flex items-center justify-center shadow-lg">
-                      <ChevronDown className="w-4 h-4 text-background" />
-                    </div>
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Bottom line */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-center text-sm md:text-base text-muted-foreground mt-12"
-          >
-            Autonomy — without losing control.
-          </motion.p>
+              {/* Quote */}
+              <p style={{ fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,0.55)", margin: 0, fontStyle: "italic" }}>
+                {Array.isArray(step.quote)
+                  ? step.quote.map((line, i) => (
+                      <span key={i} className={i > 0 ? "block mt-2" : "block"}>
+                        {line}
+                      </span>
+                    ))
+                  : step.quote}
+              </p>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Bottom line */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="text-center"
+          style={{
+            fontSize: 14,
+            color: "rgba(255,255,255,0.6)",
+            marginTop: 64,
+          }}
+        >
+          Autonomy — without losing control.
+        </motion.p>
       </div>
     </section>
   );
