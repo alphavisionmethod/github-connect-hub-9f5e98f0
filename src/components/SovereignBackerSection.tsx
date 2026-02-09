@@ -1,39 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Users, Handshake, ArrowRight } from "lucide-react";
-
-const paths = [
-  {
-    id: "users",
-    label: "USERS",
-    title: "Founding Members (Beta)",
-    oneLiner: "Get invited to the private beta.",
-    icon: Users,
-    bullets: [
-      "Priority beta access (rolling cohorts)",
-      "Founder-led onboarding",
-      "Direct feedback channel",
-      "Early pricing when plans launch",
-    ],
-    cta: "Request beta invite",
-    microcopy: "No payment. Invite-only.",
-  },
-  {
-    id: "funding",
-    label: "FUNDING",
-    title: "Partners (Capital + Strategic)",
-    oneLiner: "Help fund development and shape the roadmap.",
-    icon: Handshake,
-    bullets: [
-      "Early access to product + roadmap",
-      "Monthly build updates + demos",
-      "Direct line to founders",
-      "Priority integration requests",
-    ],
-    cta: "Talk to the founders",
-    microcopy: "For strategic partners and angels.",
-  },
-];
+import { ArrowRight } from "lucide-react";
 
 const SovereignBackerSection = () => {
   const ref = useRef(null);
@@ -61,10 +28,10 @@ const SovereignBackerSection = () => {
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-accent/10 text-accent border border-accent/20 mb-4">
-            Access
+            FINAL STEP
           </span>
           <h2
             className="font-semibold text-white mb-5"
@@ -73,109 +40,63 @@ const SovereignBackerSection = () => {
               lineHeight: 1.15,
             }}
           >
-            Choose your path
+            Request access
           </h2>
           <p
             className="max-w-xl mx-auto"
             style={{ fontSize: "16px", color: "rgba(255,255,255,0.55)" }}
           >
-            SITA is rolling out in small cohorts — and we're also opening a
-            limited partner round.
+            Choose beta access or partner access. Both are invite-only.
           </p>
         </motion.div>
 
-        {/* Two cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {paths.map((path, index) => (
-            <motion.div
-              key={path.id}
-              initial={{ opacity: 0, y: 32 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.15 + index * 0.12 }}
-              className="flex flex-col rounded-2xl"
+        {/* CTA Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="max-w-lg mx-auto rounded-2xl text-center"
+          style={{
+            background: "rgba(18, 14, 26, 0.7)",
+            border: "1px solid rgba(255,255,255,0.06)",
+            backdropFilter: "blur(16px)",
+            padding: "48px 40px",
+          }}
+        >
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
+            {/* Primary — gradient button */}
+            <button
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3 rounded-xl font-medium transition-all hover:opacity-90"
               style={{
-                background: "#120E1A",
-                border: "1px solid rgba(255,255,255,0.06)",
-                padding: "36px",
+                fontSize: "14px",
+                background: "linear-gradient(135deg, hsl(270 91% 55%), hsl(38 95% 54%))",
+                color: "#fff",
+                border: "none",
               }}
             >
-              {/* Label */}
-              <span
-                className="uppercase tracking-[0.12em] mb-6"
-                style={{
-                  fontSize: "11px",
-                  color: "rgba(242, 180, 92, 0.6)",
-                }}
-              >
-                {path.label}
-              </span>
+              Request beta invite
+              <ArrowRight className="w-4 h-4" />
+            </button>
 
-              {/* Icon */}
-              <div
-                className="inline-flex items-center justify-center w-11 h-11 rounded-xl mb-5"
-                style={{ background: "rgba(255,255,255,0.04)" }}
-              >
-                <path.icon
-                  className="w-5 h-5"
-                  style={{ color: "rgba(255,255,255,0.5)" }}
-                />
-              </div>
+            {/* Secondary — outlined */}
+            <button
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3 rounded-xl font-medium transition-all hover:bg-white/5"
+              style={{
+                fontSize: "14px",
+                background: "transparent",
+                border: "1px solid rgba(255,255,255,0.15)",
+                color: "#fff",
+              }}
+            >
+              Talk to the founders
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
 
-              {/* Title + one-liner */}
-              <h3
-                className="font-semibold text-white mb-2"
-                style={{ fontSize: "20px" }}
-              >
-                {path.title}
-              </h3>
-              <p
-                className="mb-6"
-                style={{ fontSize: "14px", color: "rgba(255,255,255,0.55)" }}
-              >
-                {path.oneLiner}
-              </p>
-
-              {/* Bullets */}
-              <ul className="space-y-3 mb-8 flex-1">
-                {path.bullets.map((bullet, i) => (
-                  <li
-                    key={i}
-                    className="flex items-start gap-3"
-                    style={{ fontSize: "14px", color: "rgba(255,255,255,0.7)" }}
-                  >
-                    <span
-                      className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                      style={{ background: "rgba(242, 180, 92, 0.5)" }}
-                    />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA */}
-              <button
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all hover:opacity-90"
-                style={{
-                  fontSize: "14px",
-                  background: "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  color: "#fff",
-                }}
-              >
-                {path.cta}
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
-              {/* Microcopy */}
-              <p
-                className="text-center mt-3"
-                style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}
-              >
-                {path.microcopy}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+          <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
+            No spam. Invite-only. Governance first.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
