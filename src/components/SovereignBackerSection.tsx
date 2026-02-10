@@ -107,11 +107,11 @@ const SovereignBackerSection = () => {
                 <li
                   key={i}
                   className="flex items-start gap-3"
-                  style={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
+                  style={{ fontSize: "14px", color: "rgba(255,255,255,0.88)" }}
                 >
                   <span
                     className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: "rgba(255,255,255,0.3)" }}
+                    style={{ background: "rgba(255,255,255,0.4)" }}
                   />
                   {bullet}
                 </li>
@@ -139,6 +139,8 @@ const SovereignBackerSection = () => {
               Request beta invite
               <ArrowRight className="w-4 h-4" />
             </button>
+            {/* Invisible spacer to match right card height */}
+            <p className="text-center mt-3" style={{ fontSize: "12px", color: "transparent" }} aria-hidden="true">&nbsp;</p>
           </motion.div>
 
           {/* Partners card */}
