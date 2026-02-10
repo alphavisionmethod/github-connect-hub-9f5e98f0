@@ -1,6 +1,6 @@
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { FileText, Shield, UserCheck, Zap, Receipt, ChevronRight, ChevronDown } from "lucide-react";
+import { FileText, Shield, UserCheck, Zap, Receipt } from "lucide-react";
 import MagneticCard from "./MagneticCard";
 
 const steps = [
@@ -121,33 +121,6 @@ const CoreEngineSection = () => {
                   </MagneticCard>
                 </div>
 
-                {/* Horizontal Arrow connector for desktop - positioned between cards */}
-                {index < steps.length - 1 && (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
-                    className="hidden xl:flex items-center justify-center absolute -right-3 top-1/2 -translate-y-1/2 z-20"
-                  >
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-r from-primary to-accent flex items-center justify-center shadow-lg">
-                      <ChevronRight className="w-4 h-4 text-background" />
-                    </div>
-                  </motion.div>
-                )}
-
-                {/* Vertical Arrow connector for mobile/tablet */}
-                {index < steps.length - 1 && (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
-                    className="xl:hidden absolute -bottom-5 left-1/2 -translate-x-1/2 z-20"
-                  >
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-b from-primary to-accent flex items-center justify-center shadow-lg">
-                      <ChevronDown className="w-4 h-4 text-background" />
-                    </div>
-                  </motion.div>
-                )}
               </motion.div>
             ))}
           </div>
