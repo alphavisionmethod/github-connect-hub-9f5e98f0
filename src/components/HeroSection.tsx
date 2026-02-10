@@ -137,7 +137,7 @@ const HeroSection = () => {
               className="btn-hero pulse-glow w-full sm:w-auto whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="relative z-10">
-                {isSubmitting ? "Submitting..." : "Request access"}
+                {isSubmitting ? "Submitting..." : "Join Waitlist"}
               </span>
             </button>
           </motion.form>
