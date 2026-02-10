@@ -111,7 +111,7 @@ const SovereignBackerSection = () => {
                 >
                   <span
                     className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: "rgba(255,255,255,0.4)" }}
+                    style={{ background: "rgba(255,255,255,0.3)" }}
                   />
                   {bullet}
                 </li>
