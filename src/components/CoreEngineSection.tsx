@@ -12,7 +12,7 @@ const steps = [
   {
     icon: Shield,
     title: "Check",
-    quote: ["You review, approve, edit, or reject.", "Clear context against your rules. No black boxes."],
+    quote: ["Clear context against your rules. No black boxes."],
   },
   {
     icon: UserCheck,
