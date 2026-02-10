@@ -101,7 +101,7 @@ const FloatingNav = () => {
 
               {/* CTA Button */}
               <button
-                onClick={() => scrollToSection("#request-access")}
+                onClick={() => scrollToSection("#join-waitlist")}
                 className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg bg-gradient-to-r from-primary to-accent text-background hover:opacity-90 transition-opacity"
               >
                 Join Waitlist
@@ -144,7 +144,7 @@ const FloatingNav = () => {
                     </button>
                   ))}
                   <button
-                    onClick={() => scrollToSection("#request-access")}
+                    onClick={() => scrollToSection("#join-waitlist")}
                     className="flex items-center justify-center gap-1.5 px-4 py-3 text-sm font-semibold rounded-lg bg-gradient-to-r from-primary to-accent text-background hover:opacity-90 transition-opacity mt-2"
                   >
                     Join Waitlist
