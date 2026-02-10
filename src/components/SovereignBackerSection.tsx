@@ -221,7 +221,7 @@ const SovereignBackerSection = () => {
               className="text-center mt-1"
               style={{ fontSize: "11px", color: "rgba(255,255,255,0.28)" }}
             >
-              Conversations open for angels & strategic partners.
+              Conversations open.
             </p>
           </motion.div>
         </div>
