@@ -159,6 +159,10 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 1 }}
             className="mt-12 max-w-3xl mx-auto"
           >
+            <div className="mb-3 text-center">
+              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-accent">CONCEPT VISUAL</span>
+              <p className="text-sm text-muted-foreground mt-1">SITA is software — not hardware.</p>
+            </div>
             <div className="glass-card p-2 rounded-2xl" style={{ boxShadow: "var(--shadow-glow-combined)" }}>
               <video
                 src={sitaDemo}
