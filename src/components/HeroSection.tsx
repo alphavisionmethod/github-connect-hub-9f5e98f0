@@ -122,7 +122,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto"
           >
             <input
               type="email"
@@ -130,7 +130,7 @@ const HeroSection = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
               required
-              className="w-full sm:flex-1 px-5 py-4 rounded-xl bg-secondary border border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground placeholder:text-muted-foreground"
+              className="w-full sm:flex-1 px-6 py-4 rounded-xl bg-secondary/80 border border-border/60 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 outline-none transition-all text-foreground placeholder:text-muted-foreground"
             />
             <button
               type="submit"
