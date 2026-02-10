@@ -125,6 +125,7 @@ const FloatingNav = () => {
           </nav>
 
           {/* Mobile Menu */}
+          <div>
           <AnimatePresence>
             {isMobileMenuOpen && (
               <motion.div
@@ -155,6 +156,7 @@ const FloatingNav = () => {
               </motion.div>
             )}
           </AnimatePresence>
+          </div>
         </motion.header>
       )}
     </AnimatePresence>
