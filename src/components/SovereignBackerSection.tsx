@@ -219,7 +219,7 @@ const SovereignBackerSection = () => {
             </p>
             <p
               className="text-center mt-1"
-              style={{ fontSize: "12px", color: "rgba(255,255,255,0.28)" }}
+              style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}
             >
               Conversations open.
             </p>
