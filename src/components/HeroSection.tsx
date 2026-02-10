@@ -158,7 +158,7 @@ const HeroSection = () => {
               <div className="absolute top-4 left-4 z-10 opacity-75">
                 <div className="flex flex-col gap-0.5 px-3 py-1.5 rounded-lg bg-background/80 backdrop-blur-sm border border-border/30">
                   <span className="text-[10px] font-semibold tracking-[0.2em] uppercase text-accent">CONCEPT VISUAL</span>
-                  <span className="text-[10px] text-muted-foreground">Software & Hardware</span>
+                  <span className="text-[10px] text-muted-foreground">software → hardware</span>
                 </div>
               </div>
               <video
