@@ -93,8 +93,8 @@ const CoreEngineSection = () => {
                     <div className="glass-card-hover p-5 lg:p-6 h-full min-h-[280px] flex flex-col">
 
                       {/* Icon */}
-                      <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 group-hover:from-primary/30 group-hover:to-accent/20 transition-all duration-300">
-                        <step.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors duration-300" />
+                      <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-primary/10 group-hover:from-accent/30 group-hover:to-primary/20 transition-all duration-300">
+                        <step.icon className="w-6 h-6 text-accent group-hover:text-primary transition-colors duration-300" />
                       </div>
 
                       {/* Title */}
