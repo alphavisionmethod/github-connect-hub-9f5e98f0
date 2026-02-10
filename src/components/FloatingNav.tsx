@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon, ArrowRight } from "lucide-react";
 import { useTheme } from "@/hooks/useTheme";
@@ -15,18 +15,16 @@ const navItems = [
 const FloatingNav = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { scrollY } = useScroll();
   const { theme, toggleTheme } = useTheme();
 
-  const navOpacity = useTransform(scrollY, [0, 100], [0, 1]);
-  const navY = useTransform(scrollY, [0, 100], [-20, 0]);
-
   useEffect(() => {
-    const unsubscribe = scrollY.on("change", (latest) => {
-      setIsVisible(latest > 100);
-    });
-    return () => unsubscribe();
-  }, [scrollY]);
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
@@ -43,12 +41,12 @@ const FloatingNav = () => {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.header
+        <motion.div
+          key="floating-nav"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
-          style={{ opacity: navOpacity, y: navY }}
           className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-4xl"
         >
           <nav className="glass-card px-4 py-3 flex items-center justify-between">
@@ -157,7 +155,7 @@ const FloatingNav = () => {
             )}
           </AnimatePresence>
           </div>
-        </motion.header>
+        </motion.div>
       )}
     </AnimatePresence>
   );
