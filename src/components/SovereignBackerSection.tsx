@@ -107,7 +107,7 @@ const SovereignBackerSection = () => {
                 <li
                   key={i}
                   className="flex items-start gap-3"
-                  style={{ fontSize: "14px", color: "rgba(255,255,255,0.88)" }}
+                  style={{ fontSize: "14px", color: "rgba(255,255,255,0.8)" }}
                 >
                   <span
                     className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0"
@@ -215,13 +215,13 @@ const SovereignBackerSection = () => {
               className="text-center mt-3"
               style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}
             >
-              For angels & strategic partners.
+              For angels & strategic partners
             </p>
             <p
               className="text-center mt-1"
               style={{ fontSize: "12px", color: "rgba(255,255,255,0.35)" }}
             >
-              Conversations open.
+              Conversations open
             </p>
           </motion.div>
         </div>
