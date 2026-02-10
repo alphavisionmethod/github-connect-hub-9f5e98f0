@@ -72,8 +72,6 @@ const CoreEngineSection = () => {
 
         {/* Process flow */}
         <div className="relative">
-          {/* Connector line */}
-          <div className="hidden xl:block absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-primary/20 via-accent/30 to-primary/20 -translate-y-1/2" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-5">
             {steps.map((step, index) => (
