@@ -66,9 +66,7 @@ const CoreEngineSection = () => {
             Think. Check. <span className="gradient-text">Approve.</span> Act. Prove.
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-            Every AI should be accountable. SITA OS thinks through your request, 
-            checks it against your rules, acts only with permission, 
-            and gives you proof of what happened. Simple.
+            Every AI should be accountable. SITA drafts actions, checks them against your rules, waits for approval, executes, and leaves a receipt.
           </p>
         </motion.div>
 
