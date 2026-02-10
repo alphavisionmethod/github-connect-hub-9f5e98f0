@@ -106,7 +106,7 @@ const FloatingNav = () => {
                 onClick={() => scrollToSection("#request-access")}
                 className="hidden md:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold rounded-lg bg-gradient-to-r from-primary to-accent text-background hover:opacity-90 transition-opacity"
               >
-                Request access
+                Join Waitlist
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
 
@@ -148,7 +148,7 @@ const FloatingNav = () => {
                     onClick={() => scrollToSection("#request-access")}
                     className="flex items-center justify-center gap-1.5 px-4 py-3 text-sm font-semibold rounded-lg bg-gradient-to-r from-primary to-accent text-background hover:opacity-90 transition-opacity mt-2"
                   >
-                    Request access
+                    Join Waitlist
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
