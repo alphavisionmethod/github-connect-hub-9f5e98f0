@@ -114,7 +114,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="text-sm font-medium text-primary mb-4"
           >
-            Join the early access waitlist
+            Join early access
           </motion.p>
           <motion.form
             onSubmit={handleSubmit}
@@ -137,7 +137,7 @@ const HeroSection = () => {
               className="btn-hero pulse-glow w-full sm:w-auto whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="relative z-10">
-                {isSubmitting ? "Joining..." : "Join Us!"}
+                {isSubmitting ? "Submitting..." : "Request access"}
               </span>
             </button>
           </motion.form>
@@ -149,7 +149,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 1 }}
             className="mt-4 text-xs text-muted-foreground/70 tracking-wide"
           >
-            Shadow mode by default • Human approval required • Full audit trail
+            Shadow mode by default. Approval required. Full audit trail.
           </motion.p>
 
           {/* Demo Video */}
