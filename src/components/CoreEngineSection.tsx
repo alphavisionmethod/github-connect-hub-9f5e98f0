@@ -17,17 +17,17 @@ const steps = [
   {
     icon: UserCheck,
     title: "Approve",
-    quote: "Should I proceed, or wait for you?",
+    quote: "You approve, edit, or reject. Or set policies for auto-approval.",
   },
   {
     icon: Zap,
     title: "Act",
-    quote: ["SITA executes only what you approved.", "Within strict permissions."],
+    quote: ["SITA executes only what's permitted —", "within strict limits."],
   },
   {
     icon: Receipt,
     title: "Prove",
-    quote: ["You receive a receipt:", "What happened, why, when, and by whom."],
+    quote: ["A receipt for every action:", "what happened, why, when, and by whom."],
   },
 ];
 
