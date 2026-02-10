@@ -217,6 +217,12 @@ const SovereignBackerSection = () => {
             >
               For angels &amp; strategic partners.
             </p>
+            <p
+              className="text-center mt-1"
+              style={{ fontSize: "11px", color: "rgba(255,255,255,0.28)" }}
+            >
+              We're raising a limited angel/strategic round.
+            </p>
           </motion.div>
         </div>
 
