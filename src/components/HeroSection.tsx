@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import sitaLogo from "@/assets/sita-logo.jpeg";
-import heroDashboard from "@/assets/hero-dashboard-mock.jpg";
+import sitaDemo from "@/assets/sita-demo.mp4";
 import VerificationReceipt from "./VerificationReceipt";
 
 const HeroSection = () => {
@@ -114,7 +114,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="text-sm font-medium text-primary mb-4"
           >
-            Join early access
+            Join the early access waitlist
           </motion.p>
           <motion.form
             onSubmit={handleSubmit}
@@ -137,7 +137,7 @@ const HeroSection = () => {
               className="btn-hero pulse-glow w-full sm:w-auto whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="relative z-10">
-                {isSubmitting ? "Requesting..." : "Request access"}
+                {isSubmitting ? "Joining..." : "Join Us!"}
               </span>
             </button>
           </motion.form>
@@ -149,7 +149,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 1 }}
             className="mt-4 text-xs text-muted-foreground/70 tracking-wide"
           >
-            Shadow mode by default. Approval required. Full audit trail.
+            Shadow mode by default • Human approval required • Full audit trail
           </motion.p>
 
           {/* Demo Video */}
@@ -160,11 +160,13 @@ const HeroSection = () => {
             className="mt-12 max-w-3xl mx-auto"
           >
             <div className="glass-card p-2 rounded-2xl" style={{ boxShadow: "var(--shadow-glow-combined)" }}>
-              <img
-                src={heroDashboard}
-                alt="SITA OS governance workflow — Think, Check, Act, Prove approval flow with verification receipt"
+              <video
+                src={sitaDemo}
+                muted
+                controls
+                playsInline
                 className="w-full rounded-xl"
-                loading="eager"
+                style={{ aspectRatio: "16/9" }}
               />
             </div>
           </motion.div>
