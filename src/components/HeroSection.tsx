@@ -117,6 +117,7 @@ const HeroSection = () => {
             Join early access
           </motion.p>
           <motion.form
+            id="join-waitlist"
             onSubmit={handleSubmit}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
