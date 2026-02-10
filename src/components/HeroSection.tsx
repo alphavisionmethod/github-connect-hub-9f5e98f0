@@ -108,14 +108,8 @@ const HeroSection = () => {
           </motion.p>
 
           {/* CTA Form */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="text-sm font-medium text-primary mb-4"
-          >
-            Join early access
-          </motion.p>
+
+
           <motion.form
             id="join-waitlist"
             onSubmit={handleSubmit}
