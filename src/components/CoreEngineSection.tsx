@@ -63,7 +63,7 @@ const CoreEngineSection = () => {
             How SITA Works
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Think. Check. Act. <span className="gradient-text">Prove.</span>
+            Think. Check. Approve. Act. <span className="gradient-text">Prove.</span>
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
             Every AI should be accountable. SITA OS thinks through your request, 
