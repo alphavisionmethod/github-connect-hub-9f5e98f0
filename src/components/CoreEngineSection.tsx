@@ -17,7 +17,7 @@ const steps = [
   {
     icon: UserCheck,
     title: "Approve",
-    quote: "You approve, edit, or reject. Or set policies for auto-approval.",
+    quote: "You approve, edit, or reject. Or set policies for automatic approval.",
   },
   {
     icon: Zap,
