@@ -92,8 +92,8 @@ const CoreEngineSection = () => {
                 className="relative group flex items-center"
               >
                 {/* Step number - outside MagneticCard to avoid transform clipping */}
-                <div className="absolute -top-3 -left-3 w-6 h-6 rounded-full bg-background/80 border border-primary/25 flex items-center justify-center z-20 opacity-55">
-                  <span className="text-xs font-semibold gradient-text">{index + 1}</span>
+                <div className="absolute -top-3 -left-3 w-5 h-5 rounded-full bg-background/60 border border-primary/15 flex items-center justify-center z-20 opacity-30">
+                  <span className="text-[10px] font-medium gradient-text">{index + 1}</span>
                 </div>
 
                 {/* Card */}
