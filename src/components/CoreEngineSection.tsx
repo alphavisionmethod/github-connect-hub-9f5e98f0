@@ -42,6 +42,15 @@ const CoreEngineSection = () => {
 
   return (
     <section id="core-engine" ref={ref} className="section-padding relative overflow-hidden">
+      {/* SVG gradient definition for icons */}
+      <svg width="0" height="0" className="absolute">
+        <defs>
+          <linearGradient id="icon-brand-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="hsl(270 91% 55%)" />
+            <stop offset="100%" stopColor="hsl(38 95% 54%)" />
+          </linearGradient>
+        </defs>
+      </svg>
       {/* Background */}
       <div className="absolute inset-0 bg-radial-center" />
       
@@ -93,8 +102,8 @@ const CoreEngineSection = () => {
                     <div className="glass-card-hover p-5 lg:p-6 h-full min-h-[280px] flex flex-col">
 
                       {/* Icon */}
-                      <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-primary/10 group-hover:from-accent/30 group-hover:to-primary/20 transition-all duration-300">
-                        <step.icon className="w-6 h-6 text-accent group-hover:text-primary transition-colors duration-300" />
+                      <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/15 group-hover:from-primary/30 group-hover:to-accent/25 transition-all duration-300 shadow-[0_0_15px_hsl(270_91%_55%/0.15)]">
+                        <step.icon className="w-6 h-6" style={{ stroke: 'url(#icon-brand-gradient)' }} />
                       </div>
 
                       {/* Title */}
