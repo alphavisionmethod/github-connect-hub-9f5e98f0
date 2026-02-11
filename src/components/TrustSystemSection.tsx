@@ -16,7 +16,7 @@ const trustPoints = [
   {
     icon: Receipt,
     title: "Receipts for every action",
-    subtitle: "Full traceability",
+    subtitle: "Proof of what happened — with receipts.",
   },
   {
     icon: RotateCcw,
@@ -26,7 +26,7 @@ const trustPoints = [
   {
     icon: UserCheck,
     title: "Human-in-the-loop by design",
-    subtitle: "Not as an afterthought",
+    subtitle: "Governance is built-in — not optional.",
   },
 ];
 
@@ -67,7 +67,7 @@ const TrustSystemSection = () => {
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               className={`rounded-2xl border border-white/10 bg-white/[0.03] p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] backdrop-blur cursor-default transition hover:border-white/15 hover:bg-white/[0.045] ${index === trustPoints.length - 1 ? 'md:col-span-2' : ''}`}
             >
-              <div className="h-[2px] w-10 rounded-full bg-gradient-to-r from-purple-500 to-amber-400 opacity-80 mb-4" />
+              <div className="h-[2px] w-14 rounded-full bg-gradient-to-r from-purple-500 to-amber-400 opacity-90 mb-4" />
               <div className="flex items-start gap-3">
                 <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-purple-500/15">
                   <point.icon className="w-[18px] h-[18px] text-primary" />
