@@ -48,7 +48,7 @@ const TrustSystemSection = () => {
             Built for trust — <span className="gradient-text">not surprises.</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            SITA is designed like a system, not a chatbot.
+            A governed execution system — approvals, permissions, receipts.
           </p>
         </motion.div>
 
