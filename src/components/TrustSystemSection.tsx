@@ -5,23 +5,28 @@ import { EyeOff, KeyRound, Receipt, RotateCcw, UserCheck } from "lucide-react";
 const trustPoints = [
   {
     icon: EyeOff,
-    text: "Shadow Mode by default — nothing runs without approval",
+    title: "Shadow Mode by default",
+    subtitle: "Nothing runs without approval",
   },
   {
     icon: KeyRound,
-    text: "Explicit permissions — scoped, revocable, auditable",
+    title: "Explicit permissions",
+    subtitle: "Scoped, revocable, auditable",
   },
   {
     icon: Receipt,
-    text: "Receipts for every action — full traceability",
+    title: "Receipts for every action",
+    subtitle: "Full traceability",
   },
   {
     icon: RotateCcw,
-    text: "Rollbacks & kill switch — you stay in control",
+    title: "Rollbacks & kill switch",
+    subtitle: "You stay in control",
   },
   {
     icon: UserCheck,
-    text: "Human-in-the-loop by design — not as an afterthought",
+    title: "Human-in-the-loop by design",
+    subtitle: "Not as an afterthought",
   },
 ];
 
@@ -60,14 +65,38 @@ const TrustSystemSection = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              className="flex items-center gap-3 py-2"
+              className="flex items-center rounded-2xl border cursor-default transition-colors duration-300"
+              style={{
+                background: 'rgba(255,255,255,0.03)',
+                borderColor: 'rgba(255,255,255,0.08)',
+                padding: '20px 22px',
+                gap: '14px',
+              }}
+              whileHover={{
+                backgroundColor: 'rgba(255,255,255,0.045)',
+                borderColor: 'rgba(255,255,255,0.12)',
+              }}
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-primary/20 to-accent/10 flex items-center justify-center">
-                <point.icon className="w-5 h-5 text-accent" />
+              <div
+                className="flex-shrink-0 flex items-center justify-center"
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 12,
+                  background: 'rgba(120,60,255,0.16)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                }}
+              >
+                <point.icon className="w-5 h-5 text-primary" />
               </div>
-              <p className="text-muted-foreground text-sm md:text-base leading-relaxed pt-1.5">
-                {point.text}
-              </p>
+              <div>
+                <p className="font-semibold" style={{ fontSize: 16, color: 'rgba(255,255,255,0.92)' }}>
+                  {point.title}
+                </p>
+                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', marginTop: 4 }}>
+                  {point.subtitle}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>
