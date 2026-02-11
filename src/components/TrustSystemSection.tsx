@@ -57,26 +57,29 @@ const TrustSystemSection = () => {
           </p>
         </motion.div>
 
-        {/* Trust bullets */}
-        <div className="max-w-2xl mx-auto space-y-4">
+        {/* Trust grid */}
+        <div className="max-w-3xl mx-auto grid grid-cols-1 gap-4 md:grid-cols-2">
           {trustPoints.map((point, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              className="flex items-start gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.04] px-5 py-4 cursor-default transition-colors duration-300 hover:bg-white/[0.06] hover:border-white/[0.1]"
+              className={`rounded-2xl border border-white/10 bg-white/[0.03] p-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] backdrop-blur cursor-default transition hover:border-white/15 hover:bg-white/[0.045] ${index === trustPoints.length - 1 ? 'md:col-span-2' : ''}`}
             >
-              <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-purple-500/15">
-                <point.icon className="w-[18px] h-[18px] text-primary" />
-              </div>
-              <div>
-                <p className="text-[16px] font-semibold text-white/[0.92]">
-                  {point.title}
-                </p>
-                <p className="text-[14px] text-white/[0.65] mt-1">
-                  {point.subtitle}
-                </p>
+              <div className="h-[2px] w-10 rounded-full bg-gradient-to-r from-purple-500 to-amber-400 opacity-80 mb-4" />
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-purple-500/15">
+                  <point.icon className="w-[18px] h-[18px] text-primary" />
+                </div>
+                <div>
+                  <p className="text-base font-semibold text-white/90">
+                    {point.title}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-white/[0.65]">
+                    {point.subtitle}
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}
