@@ -45,7 +45,7 @@ const TrustSystemSection = () => {
             Trust System
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Built for trust, <span className="gradient-text">not surprises</span>
+            Built for trust — <span className="gradient-text">not surprises.</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             SITA is designed like a system, not a chatbot.
