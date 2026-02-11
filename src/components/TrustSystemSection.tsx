@@ -65,35 +65,16 @@ const TrustSystemSection = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              className="flex items-center rounded-2xl border cursor-default transition-colors duration-300"
-              style={{
-                background: 'rgba(255,255,255,0.03)',
-                borderColor: 'rgba(255,255,255,0.08)',
-                padding: '20px 22px',
-                gap: '14px',
-              }}
-              whileHover={{
-                backgroundColor: 'rgba(255,255,255,0.045)',
-                borderColor: 'rgba(255,255,255,0.12)',
-              }}
+              className="flex items-start gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.04] px-5 py-4 cursor-default transition-colors duration-300 hover:bg-white/[0.06] hover:border-white/[0.1]"
             >
-              <div
-                className="flex-shrink-0 flex items-center justify-center"
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 12,
-                  background: 'rgba(120,60,255,0.16)',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                }}
-              >
-                <point.icon className="w-5 h-5 text-primary" />
+              <div className="flex-shrink-0 flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-purple-500/15">
+                <point.icon className="w-[18px] h-[18px] text-primary" />
               </div>
               <div>
-                <p className="font-semibold" style={{ fontSize: 16, color: 'rgba(255,255,255,0.92)' }}>
+                <p className="text-[16px] font-semibold text-white/[0.92]">
                   {point.title}
                 </p>
-                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', marginTop: 4 }}>
+                <p className="text-[14px] text-white/[0.65] mt-1">
                   {point.subtitle}
                 </p>
               </div>
