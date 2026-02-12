@@ -34,6 +34,23 @@ const HeroSection = () => {
         setSubmittedEmail(email);
         setShowReceipt(true);
         setEmail("");
+
+        // Fire workflow triggers (fire and forget)
+        supabase.functions.invoke("execute-workflow", {
+          body: {
+            trigger_type: "form_submission",
+            contact_email: email,
+            metadata: { source: "landing_page_hero", form_name: "waitlist" },
+          },
+        }).catch(console.error);
+
+        supabase.functions.invoke("execute-workflow", {
+          body: {
+            trigger_type: "contact_created",
+            contact_email: email,
+            metadata: { source: "landing_page_hero" },
+          },
+        }).catch(console.error);
       }
     } catch (error) {
       console.error("Error submitting to waitlist:", error);

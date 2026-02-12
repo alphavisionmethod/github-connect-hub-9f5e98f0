@@ -39,6 +39,23 @@ const InvestorDataRoom = () => {
         supabase.functions.invoke("notify-investor-lead", {
           body: { email },
         }).catch(console.error);
+
+        // Fire workflow triggers (fire and forget)
+        supabase.functions.invoke("execute-workflow", {
+          body: {
+            trigger_type: "form_submission",
+            contact_email: email,
+            metadata: { source: "investor_data_room", form_name: "investor" },
+          },
+        }).catch(console.error);
+
+        supabase.functions.invoke("execute-workflow", {
+          body: {
+            trigger_type: "contact_created",
+            contact_email: email,
+            metadata: { source: "investor_data_room", is_investor: true },
+          },
+        }).catch(console.error);
       }
     } catch (error) {
       console.error("Error:", error);
