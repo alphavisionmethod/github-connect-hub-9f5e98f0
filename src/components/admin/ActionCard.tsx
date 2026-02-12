@@ -3,6 +3,8 @@ import {
   Mail, Clock, Tag, X, UserCog, GitBranch, Webhook,
   Bell, Trash2, ChevronDown, ChevronUp, GripVertical
 } from "lucide-react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import ActionConfigPanel from "./ActionConfigPanel";
 
 export interface ActionType {
@@ -44,6 +46,22 @@ interface ActionCardProps {
 }
 
 const ActionCard = ({ action, index, isExpanded, onToggle, onUpdate, onDelete, isLast }: ActionCardProps) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: action.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+    zIndex: isDragging ? 50 : undefined,
+  };
+
   const actionMeta = ACTION_TYPES.find(a => a.value === action.action_type);
   if (!actionMeta) return null;
 
@@ -70,7 +88,7 @@ const ActionCard = ({ action, index, isExpanded, onToggle, onUpdate, onDelete, i
   };
 
   return (
-    <div className="flex items-start gap-3">
+    <div ref={setNodeRef} style={style} className="flex items-start gap-3">
       {/* Timeline */}
       <div className="flex flex-col items-center pt-1">
         <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
@@ -93,6 +111,14 @@ const ActionCard = ({ action, index, isExpanded, onToggle, onUpdate, onDelete, i
           className="flex items-center justify-between p-3 cursor-pointer hover:bg-secondary/30 rounded-xl transition-colors"
         >
           <div className="flex items-center gap-3">
+            <button
+              {...attributes}
+              {...listeners}
+              className="p-1 rounded hover:bg-secondary cursor-grab active:cursor-grabbing text-muted-foreground"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <GripVertical className="w-4 h-4" />
+            </button>
             <div className={`w-8 h-8 rounded-lg flex items-center justify-center bg-secondary ${actionMeta.color}`}>
               <Icon className="w-4 h-4" />
             </div>
