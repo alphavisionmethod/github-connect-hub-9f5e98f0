@@ -4,6 +4,13 @@ import {
   X, Save, Play, ChevronRight, Plus, Zap, Settings,
   List, CheckCircle, ArrowLeft
 } from "lucide-react";
+import {
+  DndContext, closestCenter, KeyboardSensor, PointerSensor,
+  useSensor, useSensors, DragEndEvent
+} from "@dnd-kit/core";
+import {
+  SortableContext, verticalListSortingStrategy, arrayMove
+} from "@dnd-kit/sortable";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import TriggerSelector, { TRIGGER_TYPES } from "./TriggerSelector";
@@ -44,6 +51,22 @@ const WorkflowBuilderModal = ({ isOpen, onClose, onSave, editWorkflow }: Workflo
   const [showActionPicker, setShowActionPicker] = useState(false);
   const [saving, setSaving] = useState(false);
   const { toast } = useToast();
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(KeyboardSensor)
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (over && active.id !== over.id) {
+      setActions(prev => {
+        const oldIndex = prev.findIndex(a => a.id === active.id);
+        const newIndex = prev.findIndex(a => a.id === over.id);
+        return arrayMove(prev, oldIndex, newIndex).map((a, i) => ({ ...a, action_order: i + 1 }));
+      });
+    }
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -304,20 +327,24 @@ const WorkflowBuilderModal = ({ isOpen, onClose, onSave, editWorkflow }: Workflo
               )}
 
               {/* Action list */}
-              <div>
-                {actions.map((action, idx) => (
-                  <ActionCard
-                    key={action.id}
-                    action={action}
-                    index={idx}
-                    isExpanded={expandedAction === action.id}
-                    onToggle={() => setExpandedAction(expandedAction === action.id ? null : action.id)}
-                    onUpdate={(config) => updateAction(action.id, config)}
-                    onDelete={() => deleteAction(action.id)}
-                    isLast={idx === actions.length - 1 && !showActionPicker}
-                  />
-                ))}
-              </div>
+              <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                <SortableContext items={actions.map(a => a.id)} strategy={verticalListSortingStrategy}>
+                  <div>
+                    {actions.map((action, idx) => (
+                      <ActionCard
+                        key={action.id}
+                        action={action}
+                        index={idx}
+                        isExpanded={expandedAction === action.id}
+                        onToggle={() => setExpandedAction(expandedAction === action.id ? null : action.id)}
+                        onUpdate={(config) => updateAction(action.id, config)}
+                        onDelete={() => deleteAction(action.id)}
+                        isLast={idx === actions.length - 1 && !showActionPicker}
+                      />
+                    ))}
+                  </div>
+                </SortableContext>
+              </DndContext>
 
               {/* Add action button */}
               {!showActionPicker ? (
