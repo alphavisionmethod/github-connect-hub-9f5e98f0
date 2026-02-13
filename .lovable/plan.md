@@ -1,143 +1,145 @@
 
+# Fund Our Project + Investor Pitch Page + Permanent Navigation
 
-# Workflow Automation System -- GoHighLevel-Style
+This plan covers three major changes: updating the CTAs and creating two new dedicated pages, plus making the navigation bar always visible.
 
-## Overview
+---
 
-Transform the current email-only sequence system into a full trigger-action workflow automation engine inspired by GoHighLevel. The current system only supports email sequences with delays. The new system will support multiple trigger types, diverse action types, conditional logic, and a visual workflow builder.
+## 1. Permanent Transparent Navigation Bar
 
-## Current State
+**Current behavior:** The FloatingNav only appears after scrolling 100px, then disappears when scrolling back up.
 
-- **WorkflowsTab.tsx**: Lists email sequences with play/pause, expand to see steps
-- **SequenceBuilderModal.tsx**: Creates sequences with 3 trigger types (on_signup, on_backer, manual) and email-only steps with delays
-- **Database tables**: `email_sequences`, `sequence_steps`, `email_templates`, `email_queue`, `email_logs`
-- All steps are email-only -- no other action types
+**New behavior:**
+- Navigation is **always visible** (remove the scroll-based show/hide logic)
+- Fully transparent with backdrop blur (glass effect) at all times
+- Replace "Join Waitlist" CTA button with **"Fund Our Project"** (gradient button) that links to `/fund`
+- Same change in mobile menu
+- No content on the page gets hidden or erased when scrolling
 
-## What Changes
+**File:** `src/components/FloatingNav.tsx`
 
-### 1. New Database Tables (Supabase Migrations)
+---
 
-**`workflows` table** (replaces reliance on `email_sequences` for this UI)
-- `id`, `name`, `description`, `is_active`, `created_at`, `updated_at`
+## 2. "Founding Members" Card CTA Change
 
-**`workflow_triggers` table**
-- `id`, `workflow_id` (FK), `trigger_type` (enum: `form_submission`, `contact_created`, `appointment_booked`, `tag_added`, `email_opened`, `link_clicked`, `manual`, `contact_replied`, `pipeline_stage_changed`)
-- `trigger_config` (JSONB -- stores filter conditions like which form, which tag, etc.)
+**Current:** Button says "Request beta invite"
+**New:** Button says **"Fund Our Project"** and navigates to `/fund` using React Router
 
-**`workflow_actions` table**
-- `id`, `workflow_id` (FK), `action_order`, `action_type` (enum: `send_email`, `send_sms`, `add_tag`, `remove_tag`, `update_contact`, `assign_user`, `wait_delay`, `if_else`, `webhook`, `internal_notification`, `move_pipeline`)
-- `action_config` (JSONB -- stores action-specific settings like template_id, delay_hours, conditions, webhook_url, etc.)
-- `parent_action_id` (nullable FK to self -- for if/else branching)
-- `branch` (nullable -- `yes` or `no` for if/else children)
+**File:** `src/components/SovereignBackerSection.tsx`
 
-**`workflow_executions` table** (execution log / receipts)
-- `id`, `workflow_id`, `contact_id`, `contact_email`, `status` (`running`, `completed`, `failed`, `paused`), `started_at`, `completed_at`
+---
 
-**`workflow_execution_steps` table**
-- `id`, `execution_id`, `action_id`, `status`, `executed_at`, `result` (JSONB), `error`
+## 3. "Talk to the founders" Card CTA Change
 
-### 2. New UI Components
+**Current:** Button says "Talk to the founders" with no action
+**New:** Button navigates to `/pitch` page
 
-**WorkflowsTab.tsx** -- Refactored
-- List of workflows with name, trigger badge, action count, status toggle, last run time
-- "Create Workflow" button opens builder
-- Filter by active/paused
-- Quick stats: active workflows, total executions, actions configured
+**File:** `src/components/SovereignBackerSection.tsx`
 
-**WorkflowBuilderModal.tsx** -- New (replaces SequenceBuilderModal for new workflows)
-- **Step 1 - Settings**: Name, description
-- **Step 2 - Trigger**: Pick a trigger type from categorized grid (Contact, Appointment, Communication, Pipeline). Each trigger has its own config panel (e.g., "which form?" for form_submission)
-- **Step 3 - Actions**: Visual vertical timeline where you add actions sequentially
-  - Each action is a card with icon, type label, and inline config
-  - "+" button between actions to insert
-  - Drag to reorder
-  - Action types grouped: Communication (Send Email, Send SMS), CRM (Add Tag, Update Contact, Assign User), Logic (Wait/Delay, If/Else), Integration (Webhook, Internal Notification)
-  - If/Else shows branching with Yes/No paths
-- **Step 4 - Review and Activate**: Summary view before saving
+---
 
-**TriggerSelector.tsx** -- New
-- Categorized grid of trigger types with icons and descriptions
-- Search/filter triggers
+## 4. New `/fund` Page — Donation/Funding Page
 
-**ActionCard.tsx** -- New
-- Reusable card for each action in the builder timeline
-- Shows action icon, type, summary of config
-- Edit/delete buttons
-- Inline config panel when expanded
+A beautiful, dark-themed page matching the existing visual identity with:
 
-**ActionConfigPanel.tsx** -- New
-- Dynamic form that changes based on action type:
-  - Send Email: template picker, subject override
-  - Wait/Delay: hours/days picker
-  - Add Tag: tag name input
-  - If/Else: condition builder (field, operator, value)
-  - Webhook: URL, method, headers, body
-  - Update Contact: field picker + value
+### Donation Tiers (3 cards + 1 open donation)
+- **Supporter** — $25: "Back the mission. Get early updates"
+- **Builder** — $100: "Priority beta access + name in credits"
+- **Visionary** — $500: "All Builder perks + monthly founder calls"
+- **Open Donation** — Custom amount input: "Donate without expecting anything in return"
 
-### 3. Backend -- New Edge Function
+Each tier card features the purple-to-gold gradient top border, glass card styling, and a CTA button. Clicking a tier opens a simple form collecting name, email, amount, and optional message, then saves to a `donations` database table.
 
-**`execute-workflow` edge function**
-- Receives trigger event payload (contact_id, trigger_type, metadata)
-- Looks up active workflows matching the trigger
-- Creates execution record
-- Processes actions sequentially:
-  - `send_email`: queues email via existing `email_queue`
-  - `wait_delay`: schedules next step at future time
-  - `add_tag` / `update_contact`: updates Supabase records
-  - `if_else`: evaluates condition, picks branch
-  - `webhook`: calls external URL
-- Logs each step result to `workflow_execution_steps`
+### Design
+- Same deep dark background (#0B0812) with radial glows
+- Animated entrance with framer-motion
+- Back button to return to homepage
+- Mobile responsive grid (1 col mobile, 2 col tablet, 4 col desktop)
 
-### 4. Trigger Integration Points
+**New file:** `src/pages/Fund.tsx`
 
-- **Form submission**: The existing waitlist signup flow calls `execute-workflow` with trigger `form_submission`
-- **Contact created (backer)**: The existing backer flow calls `execute-workflow` with trigger `contact_created`
-- **Manual**: Admin clicks "Run" on a workflow, selects contacts
+---
 
-### 5. File Changes Summary
+## 5. New `/pitch` Page — Investor Pitch Presentation
 
-| File | Change |
+A comprehensive investor-facing page with:
+
+### Sections
+1. **Hero** — "SITA OS — Investor Brief" with a gradient headline
+2. **PDF Viewer Area** — A prominent card with a placeholder message ("Pitch deck PDF coming soon") that will display the uploaded PDF once provided. For now, a styled placeholder card.
+3. **Funding Phases Timeline** — A vertical timeline showing:
+   - **Pre-Seed** (current phase, highlighted): $600,000 target
+   - **Seed**: Amount configurable (placeholder $2,000,000)
+   - **Series A**: Amount configurable (placeholder $8,000,000)
+   - Each phase shows: stage name, target amount, status badge (Active/Upcoming), and a brief description of fund allocation
+4. **Use of Funds** — A breakdown section showing what the funding covers (e.g., Engineering 40%, Product 25%, Go-to-Market 20%, Operations 15%) with animated progress bars
+5. **CTA** — "Talk to the Founders" button linking to a contact form or email
+
+### Backend (Database Table: `funding_rounds`)
+- Columns: `id`, `phase_name`, `target_amount`, `current_amount`, `status` (active/upcoming/completed), `description`, `display_order`, `created_at`, `updated_at`
+- Pre-seeded with Pre-Seed ($600,000), Seed, Series A data
+- Editable from the admin dashboard later
+
+### Design
+- Matching dark theme with glass cards
+- The active funding phase gets a glowing border treatment
+- Timeline uses a vertical line with circular nodes (filled for active, outlined for upcoming)
+- Fully responsive
+
+**New file:** `src/pages/Pitch.tsx`
+
+---
+
+## 6. Database Tables
+
+### `donations` table
+```
+id (uuid, PK)
+name (text, nullable)
+email (text, not null)
+amount (numeric, not null)
+tier (text) — 'supporter' | 'builder' | 'visionary' | 'open'
+message (text, nullable)
+status (text, default 'pending')
+created_at (timestamptz)
+```
+RLS: Allow anonymous inserts (public form), admin-only reads.
+
+### `funding_rounds` table
+```
+id (uuid, PK)
+phase_name (text, not null)
+target_amount (numeric, not null)
+current_amount (numeric, default 0)
+status (text) — 'active' | 'upcoming' | 'completed'
+description (text)
+fund_allocation (jsonb) — e.g. {"Engineering": 40, "Product": 25, ...}
+display_order (integer)
+created_at (timestamptz)
+updated_at (timestamptz)
+```
+RLS: Public reads (investor page is public), admin-only writes.
+
+Pre-seed data via migration:
+- Pre-Seed: $600,000, status 'active'
+- Seed: $2,000,000, status 'upcoming'
+- Series A: $8,000,000, status 'upcoming'
+
+---
+
+## 7. Route Registration
+
+Add `/fund` and `/pitch` routes in `src/App.tsx`.
+
+---
+
+## Summary of Files Changed/Created
+
+| File | Action |
 |------|--------|
-| `src/components/admin/WorkflowsTab.tsx` | Major refactor -- new workflow list UI with trigger/action counts |
-| `src/components/admin/SequenceBuilderModal.tsx` | Keep for legacy; new workflows use WorkflowBuilderModal |
-| `src/components/admin/WorkflowBuilderModal.tsx` | **New** -- multi-step workflow builder |
-| `src/components/admin/TriggerSelector.tsx` | **New** -- trigger type picker |
-| `src/components/admin/ActionCard.tsx` | **New** -- action timeline card |
-| `src/components/admin/ActionConfigPanel.tsx` | **New** -- dynamic action config forms |
-| `supabase/functions/execute-workflow/index.ts` | **New** -- workflow execution engine |
-| Supabase migrations | **New** -- 4 new tables |
-
-### 6. Implementation Order
-
-1. Create database migrations (workflows, workflow_triggers, workflow_actions, workflow_executions, workflow_execution_steps)
-2. Build TriggerSelector component
-3. Build ActionCard and ActionConfigPanel components
-4. Build WorkflowBuilderModal (combines trigger + actions into a multi-step builder)
-5. Refactor WorkflowsTab to list new workflows alongside legacy sequences
-6. Create `execute-workflow` edge function
-7. Wire trigger points (waitlist signup, backer creation) to call the edge function
-
-### 7. Trigger Types Available at Launch
-
-| Trigger | Description |
-|---------|-------------|
-| Form Submission | When someone submits the waitlist/contact form |
-| Contact Created | When a new backer or waitlist entry is added |
-| Manual | Admin triggers on selected contacts |
-| Tag Added | When a tag is applied to a contact |
-| Email Opened | When a recipient opens an email |
-| Link Clicked | When a recipient clicks a link in an email |
-
-### 8. Action Types Available at Launch
-
-| Action | Description |
-|--------|-------------|
-| Send Email | Send an email using a template |
-| Wait / Delay | Pause workflow for X hours/days |
-| Add Tag | Apply a tag to the contact |
-| Remove Tag | Remove a tag from the contact |
-| Update Contact | Update a contact field |
-| If/Else | Branch based on a condition |
-| Webhook | Call an external URL (Zapier, n8n, etc.) |
-| Internal Notification | Notify admin via email |
-
+| `src/components/FloatingNav.tsx` | Edit: always visible, transparent, "Fund Our Project" CTA |
+| `src/components/SovereignBackerSection.tsx` | Edit: update both card CTAs with navigation |
+| `src/pages/Fund.tsx` | Create: donation page with 4 tiers |
+| `src/pages/Pitch.tsx` | Create: investor pitch page with phases timeline |
+| `src/App.tsx` | Edit: add two new routes |
+| Migration SQL | Create: `donations` + `funding_rounds` tables with RLS + seed data |
