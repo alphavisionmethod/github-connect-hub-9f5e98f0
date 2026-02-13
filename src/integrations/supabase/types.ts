@@ -294,6 +294,39 @@ export type Database = {
           },
         ]
       }
+      donations: {
+        Row: {
+          amount: number
+          created_at: string
+          email: string
+          id: string
+          message: string | null
+          name: string | null
+          status: string
+          tier: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          email: string
+          id?: string
+          message?: string | null
+          name?: string | null
+          status?: string
+          tier?: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string | null
+          name?: string | null
+          status?: string
+          tier?: string
+        }
+        Relationships: []
+      }
       donors: {
         Row: {
           amount: number
@@ -534,6 +567,45 @@ export type Database = {
           name?: string
           subject?: string
           tier_specific?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      funding_rounds: {
+        Row: {
+          created_at: string
+          current_amount: number
+          description: string | null
+          display_order: number
+          fund_allocation: Json | null
+          id: string
+          phase_name: string
+          status: string
+          target_amount: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          current_amount?: number
+          description?: string | null
+          display_order?: number
+          fund_allocation?: Json | null
+          id?: string
+          phase_name: string
+          status?: string
+          target_amount: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          current_amount?: number
+          description?: string | null
+          display_order?: number
+          fund_allocation?: Json | null
+          id?: string
+          phase_name?: string
+          status?: string
+          target_amount?: number
           updated_at?: string
         }
         Relationships: []
