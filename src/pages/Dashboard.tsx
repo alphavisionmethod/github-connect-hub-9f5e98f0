@@ -4,7 +4,7 @@ import {
   Search, Download, Lock, LogOut, Mail, Calendar, Tag, Users, 
   DollarSign, UserCheck, TrendingUp, Crown, Rocket, Send, 
   RefreshCw, CheckCircle, Clock, BarChart3, Sparkles, Eye,
-  Workflow, FileText, Radio
+  Workflow, FileText, Radio, Contact, Building2, Target, ListTodo
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -14,6 +14,11 @@ import WorkflowsTab from "@/components/admin/WorkflowsTab";
 import TemplatesTab from "@/components/admin/TemplatesTab";
 import BroadcastsTab from "@/components/admin/BroadcastsTab";
 import EmailAnalyticsTab from "@/components/admin/EmailAnalyticsTab";
+import ContactsTab from "@/components/admin/crm/ContactsTab";
+import CompaniesTab from "@/components/admin/crm/CompaniesTab";
+import DealsTab from "@/components/admin/crm/DealsTab";
+import TasksTab from "@/components/admin/crm/TasksTab";
+import CRMAnalyticsTab from "@/components/admin/crm/CRMAnalyticsTab";
 
 interface WaitlistEntry {
   id: string;
@@ -612,8 +617,24 @@ const Dashboard = () => {
           </motion.div>
 
           {/* Tabs */}
-          <Tabs defaultValue="donors" className="w-full">
+          <Tabs defaultValue="contacts" className="w-full">
             <TabsList className="mb-6 bg-secondary/50 p-1 rounded-xl flex-wrap">
+              <TabsTrigger value="contacts" className="gap-2 rounded-lg data-[state=active]:bg-card">
+                <Contact className="w-4 h-4" />
+                Contacts
+              </TabsTrigger>
+              <TabsTrigger value="companies" className="gap-2 rounded-lg data-[state=active]:bg-card">
+                <Building2 className="w-4 h-4" />
+                Companies
+              </TabsTrigger>
+              <TabsTrigger value="deals" className="gap-2 rounded-lg data-[state=active]:bg-card">
+                <Target className="w-4 h-4" />
+                Deals
+              </TabsTrigger>
+              <TabsTrigger value="tasks" className="gap-2 rounded-lg data-[state=active]:bg-card">
+                <ListTodo className="w-4 h-4" />
+                Tasks
+              </TabsTrigger>
               <TabsTrigger value="donors" className="gap-2 rounded-lg data-[state=active]:bg-card">
                 <Crown className="w-4 h-4" />
                 Backers ({donorEntries.length})
@@ -671,6 +692,12 @@ const Dashboard = () => {
                 ))}
               </select>
             </motion.div>
+
+            {/* CRM Tabs */}
+            <TabsContent value="contacts"><ContactsTab /></TabsContent>
+            <TabsContent value="companies"><CompaniesTab /></TabsContent>
+            <TabsContent value="deals"><DealsTab /></TabsContent>
+            <TabsContent value="tasks"><TasksTab /></TabsContent>
 
             {/* Donors Tab */}
             <TabsContent value="donors">
@@ -884,7 +911,10 @@ const Dashboard = () => {
 
             {/* Analytics Tab */}
             <TabsContent value="analytics">
-              <EmailAnalyticsTab />
+              <div className="space-y-8">
+                <CRMAnalyticsTab />
+                <EmailAnalyticsTab />
+              </div>
             </TabsContent>
           </Tabs>
         </div>
