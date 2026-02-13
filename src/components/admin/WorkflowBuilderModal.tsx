@@ -15,6 +15,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import TriggerSelector, { TRIGGER_TYPES } from "./TriggerSelector";
 import ActionCard, { ACTION_TYPES, WorkflowAction } from "./ActionCard";
+import WorkflowFlowDiagram from "./WorkflowFlowDiagram";
 
 interface WorkflowBuilderModalProps {
   isOpen: boolean;
@@ -396,47 +397,58 @@ const WorkflowBuilderModal = ({ isOpen, onClose, onSave, editWorkflow }: Workflo
           )}
 
           {step === "review" && (
-            <div className="space-y-5 max-w-xl">
-              <div className="rounded-xl border border-border bg-secondary/30 p-4 space-y-3">
-                <h3 className="font-semibold text-foreground">{name}</h3>
-                {description && <p className="text-sm text-muted-foreground">{description}</p>}
-                <div className="flex items-center gap-2">
-                  <span className={`text-xs px-2 py-0.5 rounded-full ${isActive ? "bg-accent/10 text-accent" : "bg-muted text-muted-foreground"}`}>
-                    {isActive ? "Active" : "Draft"}
-                  </span>
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-border bg-secondary/30 p-4">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Trigger</p>
-                {triggerMeta && (
-                  <div className="flex items-center gap-2">
-                    <triggerMeta.icon className="w-4 h-4 text-primary" />
-                    <span className="text-sm font-medium text-foreground">{triggerMeta.label}</span>
+            <div className="space-y-5">
+              <div className="grid grid-cols-2 gap-5">
+                <div className="space-y-5">
+                  <div className="rounded-xl border border-border bg-secondary/30 p-4 space-y-3">
+                    <h3 className="font-semibold text-foreground">{name}</h3>
+                    {description && <p className="text-sm text-muted-foreground">{description}</p>}
+                    <div className="flex items-center gap-2">
+                      <span className={`text-xs px-2 py-0.5 rounded-full ${isActive ? "bg-accent/10 text-accent" : "bg-muted text-muted-foreground"}`}>
+                        {isActive ? "Active" : "Draft"}
+                      </span>
+                    </div>
                   </div>
-                )}
-              </div>
 
-              <div className="rounded-xl border border-border bg-secondary/30 p-4">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
-                  Actions ({actions.length})
-                </p>
-                <div className="space-y-2">
-                  {actions.map((a, i) => {
-                    const meta = ACTION_TYPES.find(at => at.value === a.action_type);
-                    if (!meta) return null;
-                    const Icon = meta.icon;
-                    return (
-                      <div key={a.id} className="flex items-center gap-3 text-sm">
-                        <span className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs text-muted-foreground font-medium">
-                          {i + 1}
-                        </span>
-                        <Icon className={`w-4 h-4 ${meta.color}`} />
-                        <span className="text-foreground">{meta.label}</span>
+                  <div className="rounded-xl border border-border bg-secondary/30 p-4">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-2">Trigger</p>
+                    {triggerMeta && (
+                      <div className="flex items-center gap-2">
+                        <triggerMeta.icon className="w-4 h-4 text-primary" />
+                        <span className="text-sm font-medium text-foreground">{triggerMeta.label}</span>
                       </div>
-                    );
-                  })}
+                    )}
+                  </div>
+
+                  <div className="rounded-xl border border-border bg-secondary/30 p-4">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
+                      Actions ({actions.length})
+                    </p>
+                    <div className="space-y-2">
+                      {actions.map((a, i) => {
+                        const meta = ACTION_TYPES.find(at => at.value === a.action_type);
+                        if (!meta) return null;
+                        const Icon = meta.icon;
+                        return (
+                          <div key={a.id} className="flex items-center gap-3 text-sm">
+                            <span className="w-6 h-6 rounded-full bg-muted flex items-center justify-center text-xs text-muted-foreground font-medium">
+                              {i + 1}
+                            </span>
+                            <Icon className={`w-4 h-4 ${meta.color}`} />
+                            <span className="text-foreground">{meta.label}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
+
+                {/* Flow Diagram */}
+                <WorkflowFlowDiagram
+                  triggerType={triggerType}
+                  triggerConfig={triggerConfig}
+                  actions={actions}
+                />
               </div>
             </div>
           )}
