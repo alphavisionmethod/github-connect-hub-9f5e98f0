@@ -1,10 +1,12 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const SovereignBackerSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const navigate = useNavigate();
 
   return (
     <section
@@ -119,6 +121,7 @@ const SovereignBackerSection = () => {
             </ul>
 
             <button
+              onClick={() => navigate("/fund")}
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all"
               style={{
                 fontSize: "14px",
@@ -136,7 +139,7 @@ const SovereignBackerSection = () => {
                 e.currentTarget.style.boxShadow = "none";
               }}
             >
-              Request beta invite
+              Fund Our Project
               <ArrowRight className="w-4 h-4" />
             </button>
             {/* Invisible spacer to match right card height */}
@@ -199,6 +202,7 @@ const SovereignBackerSection = () => {
             </ul>
 
             <button
+              onClick={() => navigate("/pitch")}
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-medium transition-all hover:opacity-90"
               style={{
                 fontSize: "14px",
