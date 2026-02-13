@@ -20,6 +20,7 @@ import DealsTab from "@/components/admin/crm/DealsTab";
 import TasksTab from "@/components/admin/crm/TasksTab";
 import CRMAnalyticsTab from "@/components/admin/crm/CRMAnalyticsTab";
 import DonationsTab from "@/components/admin/DonationsTab";
+import FundingRoundsTab from "@/components/admin/FundingRoundsTab";
 
 interface WaitlistEntry {
   id: string;
@@ -640,6 +641,10 @@ const Dashboard = () => {
                 <Heart className="w-4 h-4" />
                 Donations
               </TabsTrigger>
+              <TabsTrigger value="funding-rounds" className="gap-2 rounded-lg data-[state=active]:bg-card">
+                <TrendingUp className="w-4 h-4" />
+                Funding
+              </TabsTrigger>
               <TabsTrigger value="donors" className="gap-2 rounded-lg data-[state=active]:bg-card">
                 <Crown className="w-4 h-4" />
                 Backers ({donorEntries.length})
@@ -705,6 +710,7 @@ const Dashboard = () => {
             <TabsContent value="tasks"><TasksTab /></TabsContent>
 
             <TabsContent value="donations"><DonationsTab /></TabsContent>
+            <TabsContent value="funding-rounds"><FundingRoundsTab /></TabsContent>
 
             {/* Donors Tab */}
             <TabsContent value="donors">
