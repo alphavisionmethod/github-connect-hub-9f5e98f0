@@ -4,7 +4,7 @@ import {
   Search, Download, Lock, LogOut, Mail, Calendar, Tag, Users, 
   DollarSign, UserCheck, TrendingUp, Crown, Rocket, Send, 
   RefreshCw, CheckCircle, Clock, BarChart3, Sparkles, Eye,
-  Workflow, FileText, Radio, Contact, Building2, Target, ListTodo
+  Workflow, FileText, Radio, Contact, Building2, Target, ListTodo, Heart
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -19,6 +19,7 @@ import CompaniesTab from "@/components/admin/crm/CompaniesTab";
 import DealsTab from "@/components/admin/crm/DealsTab";
 import TasksTab from "@/components/admin/crm/TasksTab";
 import CRMAnalyticsTab from "@/components/admin/crm/CRMAnalyticsTab";
+import DonationsTab from "@/components/admin/DonationsTab";
 
 interface WaitlistEntry {
   id: string;
@@ -635,6 +636,10 @@ const Dashboard = () => {
                 <ListTodo className="w-4 h-4" />
                 Tasks
               </TabsTrigger>
+              <TabsTrigger value="donations" className="gap-2 rounded-lg data-[state=active]:bg-card">
+                <Heart className="w-4 h-4" />
+                Donations
+              </TabsTrigger>
               <TabsTrigger value="donors" className="gap-2 rounded-lg data-[state=active]:bg-card">
                 <Crown className="w-4 h-4" />
                 Backers ({donorEntries.length})
@@ -698,6 +703,8 @@ const Dashboard = () => {
             <TabsContent value="companies"><CompaniesTab /></TabsContent>
             <TabsContent value="deals"><DealsTab /></TabsContent>
             <TabsContent value="tasks"><TasksTab /></TabsContent>
+
+            <TabsContent value="donations"><DonationsTab /></TabsContent>
 
             {/* Donors Tab */}
             <TabsContent value="donors">
